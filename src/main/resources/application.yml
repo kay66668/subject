@@ -5,3 +5,8 @@ spring:
     encoding: UTF-8
     cache: false
     mode: LEGACYHTML5
+  datasource:
+    url: jdbc:mysql:///hk
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
