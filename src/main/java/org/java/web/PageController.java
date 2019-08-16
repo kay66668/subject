@@ -8,13 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 
-    @RequestMapping("/login/{page}")
+    @RequestMapping("/forward/{page}")
     public String login(@PathVariable("page") String page){
         return "/"+page;
     }
 
-    @GetMapping("init")
-    public String init(){
-        return "login";
-    }
+
 }

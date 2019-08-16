@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Changing;
 
+@Mapper
 public interface ChangingMapper {
     int deleteByPrimaryKey(Integer id);
 

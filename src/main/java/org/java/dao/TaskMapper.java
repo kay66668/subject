@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Task;
 
+@Mapper
 public interface TaskMapper {
     int deleteByPrimaryKey(Integer id);
 

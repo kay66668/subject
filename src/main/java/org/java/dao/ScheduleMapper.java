@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Schedule;
 
+@Mapper
 public interface ScheduleMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Leavetype;
 
+@Mapper
 public interface LeavetypeMapper {
     int deleteByPrimaryKey(Integer id);
 

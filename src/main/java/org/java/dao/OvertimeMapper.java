@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Overtime;
 
+@Mapper
 public interface OvertimeMapper {
     int deleteByPrimaryKey(Integer id);
 

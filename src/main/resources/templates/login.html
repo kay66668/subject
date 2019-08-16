@@ -12,25 +12,29 @@
 <!-- particles.js container -->
 <div id="particles-js" style="display: flex;align-items: center;justify-content: center">
 </div>
+<form th:action="@{'/login'}" method="post">
 <div class="login-page">
    <div class="login-content">
      <div class="login-tit">登录</div>
      <div class="login-input">
-       <input type="text" placeholder="用户名/手机号" name="name">
+       <input type="text" name="username" placeholder="用户名/手机号" >
      </div>
      <div class="login-input">
-      <input type="password" placeholder="密码" name="pwd">
+      <input type="password"  placeholder="密码" name="pwd">
     </div>
     <div class="login-btn">
       <div class="login-btn-left">
-        <span><a th:href="@{'/login/index'}" style="color:white;font-size: 18px">登录</a></span>
+        <span><a  style="color:white;font-size: 18px">
+            <input type="submit" value="登录" id="btn1" >
+        </a></span>
       </div>
       <div class="login-btn-right" onClick="changeImg()">
-        <img th:src="@{'/img/check.png'}" alt="" id="picture"> 记住密码
+        <img th:src="@{'/img/check.png'}" alt="" id="picture"> 记住密码<span style="color: red">[[${session.err}]]</span>
       </div>
     </div>
    </div>
 </div>
+</form>
 
 
 <!-- scripts -->

@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Recruit;
 
+@Mapper
 public interface RecruitMapper {
     int deleteByPrimaryKey(Integer id);
 

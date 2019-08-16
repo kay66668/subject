@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Mobilize;
 
+@Mapper
 public interface MobilizeMapper {
     int deleteByPrimaryKey(Integer id);
 

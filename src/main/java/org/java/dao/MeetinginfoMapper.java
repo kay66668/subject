@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Meetinginfo;
 
+@Mapper
 public interface MeetinginfoMapper {
     int deleteByPrimaryKey(Integer id);
 

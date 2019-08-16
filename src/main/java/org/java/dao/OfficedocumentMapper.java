@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Officedocument;
 
+@Mapper
 public interface OfficedocumentMapper {
     int deleteByPrimaryKey(Integer id);
 
