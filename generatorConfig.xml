@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!-- 数据库驱动-->
-    <classPathEntry  location="D:/ssm-jar/mysql-connector-java-3.1.10-bin.jar"/>
+    <classPathEntry  location="E:/mysql-connector-java-3.1.10-bin.jar"/>
     <context id="DB2Tables"  targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -35,8 +35,7 @@
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--如果要映射一个数据库的所有表，将tableName的值更改为%,去掉domainObjectName即可-->
-        <table tableName="inf"
-               domainObjectName="Inf"
+        <table tableName="%"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
