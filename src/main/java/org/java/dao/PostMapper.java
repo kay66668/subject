@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Post;
 
+@Mapper
 public interface PostMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,7 +1,9 @@
 package org.java.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Transfer;
 
+@Mapper
 public interface TransferMapper {
     int deleteByPrimaryKey(Integer historyid);
 
