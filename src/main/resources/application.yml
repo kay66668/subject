@@ -1,4 +1,14 @@
+server:
+  port: 9999
 
+spring:
+  datasource:
+    url: jdbc:mysql:///hk
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
 
-
-
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    mode: LEGACYHTML5
