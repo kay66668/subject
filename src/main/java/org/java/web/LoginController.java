@@ -40,4 +40,10 @@ public class LoginController {
             return  "/index";
         }
     }
+
+    @GetMapping("logout")
+    public String logout(HttpServletRequest request){
+        request.removeAttribute("user");
+        return "redirect:/init";
+    }
 }
