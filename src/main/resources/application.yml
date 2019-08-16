@@ -12,3 +12,7 @@ spring:
     encoding: utf-8
     cache: false
     mode: LEGACYHTML5
+
+mybatis:
+  mapper-locations: mapper/*Mapper.xml
+  type-aliases-package: org.java.entity
