@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.UsercarMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Usercar">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="carname" jdbcType="VARCHAR" property="carname" />
+    <result column="carport" jdbcType="VARCHAR" property="carport" />
+    <result column="ln" jdbcType="VARCHAR" property="ln" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, carname, carport, ln
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from usercar
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from usercar
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Usercar">
+    insert into usercar (id, userid, carname, 
+      carport, ln)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{carname,jdbcType=VARCHAR}, 
+      #{carport,jdbcType=VARCHAR}, #{ln,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Usercar">
+    insert into usercar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="carname != null">
+        carname,
+      </if>
+      <if test="carport != null">
+        carport,
+      </if>
+      <if test="ln != null">
+        ln,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="carname != null">
+        #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="carport != null">
+        #{carport,jdbcType=VARCHAR},
+      </if>
+      <if test="ln != null">
+        #{ln,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Usercar">
+    update usercar
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="carname != null">
+        carname = #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="carport != null">
+        carport = #{carport,jdbcType=VARCHAR},
+      </if>
+      <if test="ln != null">
+        ln = #{ln,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Usercar">
+    update usercar
+    set userid = #{userid,jdbcType=INTEGER},
+      carname = #{carname,jdbcType=VARCHAR},
+      carport = #{carport,jdbcType=VARCHAR},
+      ln = #{ln,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.ScheduleMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Schedule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="meetinglocation" jdbcType="VARCHAR" property="meetinglocation" />
+    <result column="meetingtype" jdbcType="INTEGER" property="meetingtype" />
+    <result column="starttime" jdbcType="DATE" property="starttime" />
+    <result column="endtime" jdbcType="DATE" property="endtime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="createdepartment" jdbcType="INTEGER" property="createdepartment" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, meetinglocation, meetingtype, starttime, endtime, content, creator, createdepartment, 
+    createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Schedule">
+    insert into schedule (id, title, meetinglocation, 
+      meetingtype, starttime, endtime, 
+      content, creator, createdepartment, 
+      createtime)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{meetinglocation,jdbcType=VARCHAR}, 
+      #{meetingtype,jdbcType=INTEGER}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, 
+      #{content,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{createdepartment,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Schedule">
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="meetinglocation != null">
+        meetinglocation,
+      </if>
+      <if test="meetingtype != null">
+        meetingtype,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createdepartment != null">
+        createdepartment,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="meetinglocation != null">
+        #{meetinglocation,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtype != null">
+        #{meetingtype,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createdepartment != null">
+        #{createdepartment,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Schedule">
+    update schedule
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="meetinglocation != null">
+        meetinglocation = #{meetinglocation,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtype != null">
+        meetingtype = #{meetingtype,jdbcType=INTEGER},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createdepartment != null">
+        createdepartment = #{createdepartment,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Schedule">
+    update schedule
+    set title = #{title,jdbcType=VARCHAR},
+      meetinglocation = #{meetinglocation,jdbcType=VARCHAR},
+      meetingtype = #{meetingtype,jdbcType=INTEGER},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      content = #{content,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      createdepartment = #{createdepartment,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

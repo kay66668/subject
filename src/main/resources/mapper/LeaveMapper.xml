@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.LeaveMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Leave">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="leavetype" jdbcType="INTEGER" property="leavetype" />
+    <result column="applyfortime" jdbcType="DATE" property="applyfortime" />
+    <result column="starttime" jdbcType="DATE" property="starttime" />
+    <result column="endtime" jdbcType="DATE" property="endtime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, leavetype, applyfortime, starttime, endtime, reason, day
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from leave
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from leave
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Leave">
+    insert into leave (id, userid, leavetype, 
+      applyfortime, starttime, endtime, 
+      reason, day)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{leavetype,jdbcType=INTEGER}, 
+      #{applyfortime,jdbcType=DATE}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, 
+      #{reason,jdbcType=VARCHAR}, #{day,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Leave">
+    insert into leave
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="leavetype != null">
+        leavetype,
+      </if>
+      <if test="applyfortime != null">
+        applyfortime,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="leavetype != null">
+        #{leavetype,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Leave">
+    update leave
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="leavetype != null">
+        leavetype = #{leavetype,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        applyfortime = #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Leave">
+    update leave
+    set userid = #{userid,jdbcType=INTEGER},
+      leavetype = #{leavetype,jdbcType=INTEGER},
+      applyfortime = #{applyfortime,jdbcType=DATE},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      reason = #{reason,jdbcType=VARCHAR},
+      day = #{day,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

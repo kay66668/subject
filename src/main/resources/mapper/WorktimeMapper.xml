@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.WorktimeMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Worktime">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="worktime" jdbcType="DATE" property="worktime" />
+    <result column="closingtime" jdbcType="DATE" property="closingtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, worktime, closingtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from worktime
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from worktime
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Worktime">
+    insert into worktime (id, worktime, closingtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{worktime,jdbcType=DATE}, #{closingtime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Worktime">
+    insert into worktime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="worktime != null">
+        worktime,
+      </if>
+      <if test="closingtime != null">
+        closingtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="worktime != null">
+        #{worktime,jdbcType=DATE},
+      </if>
+      <if test="closingtime != null">
+        #{closingtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Worktime">
+    update worktime
+    <set>
+      <if test="worktime != null">
+        worktime = #{worktime,jdbcType=DATE},
+      </if>
+      <if test="closingtime != null">
+        closingtime = #{closingtime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Worktime">
+    update worktime
+    set worktime = #{worktime,jdbcType=DATE},
+      closingtime = #{closingtime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

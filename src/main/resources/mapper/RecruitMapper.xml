@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.RecruitMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Recruit">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="applyfortime" jdbcType="DATE" property="applyfortime" />
+    <result column="workingdate" jdbcType="DATE" property="workingdate" />
+    <result column="numberofpeople" jdbcType="INTEGER" property="numberofpeople" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+    <result column="claim" jdbcType="VARCHAR" property="claim" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, applyfortime, workingdate, numberofpeople, departmentid, claim, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from recruit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recruit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Recruit">
+    insert into recruit (id, userid, applyfortime, 
+      workingdate, numberofpeople, departmentid, 
+      claim, remark)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{applyfortime,jdbcType=DATE}, 
+      #{workingdate,jdbcType=DATE}, #{numberofpeople,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
+      #{claim,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Recruit">
+    insert into recruit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="applyfortime != null">
+        applyfortime,
+      </if>
+      <if test="workingdate != null">
+        workingdate,
+      </if>
+      <if test="numberofpeople != null">
+        numberofpeople,
+      </if>
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+      <if test="claim != null">
+        claim,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="workingdate != null">
+        #{workingdate,jdbcType=DATE},
+      </if>
+      <if test="numberofpeople != null">
+        #{numberofpeople,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="claim != null">
+        #{claim,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Recruit">
+    update recruit
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        applyfortime = #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="workingdate != null">
+        workingdate = #{workingdate,jdbcType=DATE},
+      </if>
+      <if test="numberofpeople != null">
+        numberofpeople = #{numberofpeople,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        departmentid = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="claim != null">
+        claim = #{claim,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Recruit">
+    update recruit
+    set userid = #{userid,jdbcType=INTEGER},
+      applyfortime = #{applyfortime,jdbcType=DATE},
+      workingdate = #{workingdate,jdbcType=DATE},
+      numberofpeople = #{numberofpeople,jdbcType=INTEGER},
+      departmentid = #{departmentid,jdbcType=INTEGER},
+      claim = #{claim,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

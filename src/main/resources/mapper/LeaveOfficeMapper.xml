@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.LeaveOfficeMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.LeaveOffice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="applyfortime" jdbcType="DATE" property="applyfortime" />
+    <result column="hd" jdbcType="DATE" property="hd" />
+    <result column="td" jdbcType="DATE" property="td" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, applyfortime, hd, td, departmentid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from leave_office
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from leave_office
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.LeaveOffice">
+    insert into leave_office (id, userid, applyfortime, 
+      hd, td, departmentid)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{applyfortime,jdbcType=DATE}, 
+      #{hd,jdbcType=DATE}, #{td,jdbcType=DATE}, #{departmentid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.LeaveOffice">
+    insert into leave_office
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="applyfortime != null">
+        applyfortime,
+      </if>
+      <if test="hd != null">
+        hd,
+      </if>
+      <if test="td != null">
+        td,
+      </if>
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="hd != null">
+        #{hd,jdbcType=DATE},
+      </if>
+      <if test="td != null">
+        #{td,jdbcType=DATE},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.LeaveOffice">
+    update leave_office
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        applyfortime = #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="hd != null">
+        hd = #{hd,jdbcType=DATE},
+      </if>
+      <if test="td != null">
+        td = #{td,jdbcType=DATE},
+      </if>
+      <if test="departmentid != null">
+        departmentid = #{departmentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.LeaveOffice">
+    update leave_office
+    set userid = #{userid,jdbcType=INTEGER},
+      applyfortime = #{applyfortime,jdbcType=DATE},
+      hd = #{hd,jdbcType=DATE},
+      td = #{td,jdbcType=DATE},
+      departmentid = #{departmentid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
