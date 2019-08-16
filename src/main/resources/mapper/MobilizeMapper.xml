@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.MobilizeMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Mobilize">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="olddepartment" jdbcType="INTEGER" property="olddepartment" />
+    <result column="oldposition" jdbcType="VARCHAR" property="oldposition" />
+    <result column="newdepartment" jdbcType="INTEGER" property="newdepartment" />
+    <result column="newposition" jdbcType="VARCHAR" property="newposition" />
+    <result column="bouncetime" jdbcType="DATE" property="bouncetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, olddepartment, oldposition, newdepartment, newposition, bouncetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mobilize
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mobilize
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Mobilize">
+    insert into mobilize (id, userid, olddepartment, 
+      oldposition, newdepartment, newposition, 
+      bouncetime)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{olddepartment,jdbcType=INTEGER}, 
+      #{oldposition,jdbcType=VARCHAR}, #{newdepartment,jdbcType=INTEGER}, #{newposition,jdbcType=VARCHAR}, 
+      #{bouncetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Mobilize">
+    insert into mobilize
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="olddepartment != null">
+        olddepartment,
+      </if>
+      <if test="oldposition != null">
+        oldposition,
+      </if>
+      <if test="newdepartment != null">
+        newdepartment,
+      </if>
+      <if test="newposition != null">
+        newposition,
+      </if>
+      <if test="bouncetime != null">
+        bouncetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="olddepartment != null">
+        #{olddepartment,jdbcType=INTEGER},
+      </if>
+      <if test="oldposition != null">
+        #{oldposition,jdbcType=VARCHAR},
+      </if>
+      <if test="newdepartment != null">
+        #{newdepartment,jdbcType=INTEGER},
+      </if>
+      <if test="newposition != null">
+        #{newposition,jdbcType=VARCHAR},
+      </if>
+      <if test="bouncetime != null">
+        #{bouncetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Mobilize">
+    update mobilize
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="olddepartment != null">
+        olddepartment = #{olddepartment,jdbcType=INTEGER},
+      </if>
+      <if test="oldposition != null">
+        oldposition = #{oldposition,jdbcType=VARCHAR},
+      </if>
+      <if test="newdepartment != null">
+        newdepartment = #{newdepartment,jdbcType=INTEGER},
+      </if>
+      <if test="newposition != null">
+        newposition = #{newposition,jdbcType=VARCHAR},
+      </if>
+      <if test="bouncetime != null">
+        bouncetime = #{bouncetime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Mobilize">
+    update mobilize
+    set userid = #{userid,jdbcType=INTEGER},
+      olddepartment = #{olddepartment,jdbcType=INTEGER},
+      oldposition = #{oldposition,jdbcType=VARCHAR},
+      newdepartment = #{newdepartment,jdbcType=INTEGER},
+      newposition = #{newposition,jdbcType=VARCHAR},
+      bouncetime = #{bouncetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

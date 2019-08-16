@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.OvertimeMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Overtime">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="applyfortime" jdbcType="DATE" property="applyfortime" />
+    <result column="starttime" jdbcType="DATE" property="starttime" />
+    <result column="endtime" jdbcType="DATE" property="endtime" />
+    <result column="overtimehours" jdbcType="VARCHAR" property="overtimehours" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, applyfortime, starttime, endtime, overtimehours
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from overtime
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from overtime
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.Overtime">
+    insert into overtime (id, userid, applyfortime, 
+      starttime, endtime, overtimehours
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{applyfortime,jdbcType=DATE}, 
+      #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, #{overtimehours,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Overtime">
+    insert into overtime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="applyfortime != null">
+        applyfortime,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="overtimehours != null">
+        overtimehours,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="overtimehours != null">
+        #{overtimehours,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.Overtime">
+    update overtime
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="applyfortime != null">
+        applyfortime = #{applyfortime,jdbcType=DATE},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=DATE},
+      </if>
+      <if test="overtimehours != null">
+        overtimehours = #{overtimehours,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.Overtime">
+    update overtime
+    set userid = #{userid,jdbcType=INTEGER},
+      applyfortime = #{applyfortime,jdbcType=DATE},
+      starttime = #{starttime,jdbcType=DATE},
+      endtime = #{endtime,jdbcType=DATE},
+      overtimehours = #{overtimehours,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

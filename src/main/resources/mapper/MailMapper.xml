@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.MailMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.Mail">
+    <result column="addresser" jdbcType="VARCHAR" property="addresser" />
+    <result column="addressee" jdbcType="VARCHAR" property="addressee" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="receivingtime" jdbcType="DATE" property="receivingtime" />
+  </resultMap>
+  <insert id="insert" parameterType="org.java.entity.Mail">
+    insert into mail (addresser, addressee, title, 
+      content, receivingtime)
+    values (#{addresser,jdbcType=VARCHAR}, #{addressee,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{receivingtime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.Mail">
+    insert into mail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addresser != null">
+        addresser,
+      </if>
+      <if test="addressee != null">
+        addressee,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="receivingtime != null">
+        receivingtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addresser != null">
+        #{addresser,jdbcType=VARCHAR},
+      </if>
+      <if test="addressee != null">
+        #{addressee,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingtime != null">
+        #{receivingtime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>
