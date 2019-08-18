@@ -61,7 +61,7 @@
             method: "get",
             striped: true,
             singleSelect: false,
-            url: "json/user.json",
+            url: "/getList",
             dataType: "json",
             pagination: true, //分页
             pageSize: 10,
@@ -78,44 +78,52 @@
                 }
                 ,
                 {
-                    title: "用户名",
-                    field: 'id',
+                    title: "用户ID",
+                    field: 'userid',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
                     title: '性别',
-                    field: 'sex',
+                    field: 'gender',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
                     title: '年龄',
-                    field: 'date',
+                    field: 'age',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '部门',
-                    field: 'person',
+                    title: '电话',
+                    field: 'tel',
                     align: 'center'
+                    valign: 'middle'
                 },
                 {
-                    title: '职位',
-                    field: 'oper',
+                    title: '邮箱',
+                    field: 'postbox',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '角色',
-                    field: 'title',
+                    title: '生日',
+                    field: 'bir',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '备注',
-                    field: 'person',
+                    title: '地址',
+                    field: 'address',
                     align: 'center'
+                    valign: 'middle'
+                }
+                {
+                    title: '入职时间',
+                    field: 'ED',
+                    align: 'center'
+                    valign: 'middle'
                 }
             ]
         });
