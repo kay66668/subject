@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql:///kobe
+    url: jdbc:mysql:///hk
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
