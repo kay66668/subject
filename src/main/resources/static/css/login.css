@@ -117,7 +117,7 @@ font-size: 18px
 }
 .login-input {
 width: 90%;
-margin: 30px auto 0 auto;
+margin: 15px auto 0 auto;
 }
 .login-input input{
    background: rgba(0, 0, 0, 0);
@@ -136,7 +136,7 @@ margin: 30px auto 0 auto;
    width: 90%;
    display: flex;
    color: #ffffff;
-   margin: 40px auto 0 auto; 
+   margin: 20px auto 0 auto;
 }
 .login-btn-left span{
    background: #2890fa;
