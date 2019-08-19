@@ -22,4 +22,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     List<User> findUser(@Param("username") String username,@Param("pwd") String pwd );
+
+    List<User> findAll();
 }

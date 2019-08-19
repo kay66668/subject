@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>简单实用企事业单位内部OA通用后台管理系统网站模板</title>
+    <title>企业OA</title>
     <meta name="keywords" content="简单实用,事业单位,内部OA,通用,后台管理系统" />
     <meta name="description" content="简单实用企事业单位内部OA通用后台管理系统网站模板下载。一套简洁大气通用的政府事业单位OA系统管理HTML页面模板，政府社区管理后台模板。该模板适合企业，或事业单位OA后台管理系统。下载文件包含新闻管理、日志管理、角色管理、部门管理、用户管理、统计分析、详情页面、tree页面等33个html页面模板，可以满足一般的项目开发使用。" /> 
     <meta name="author" content="js代码(www.jsdaima.com)" />
@@ -21,7 +21,7 @@
         <header class="main-header">
             <a href="javascript:void (0)" class="logo">
                 <span class="logo-mini"></span>
-                <span class="logo-lg">中子星通用后台管理 </span>
+                <span class="logo-lg">企业OA后台管理 </span>
             </a>
             <nav class="navbar navbar-static-top" style="display:block;font-weight: 500;font-size: 14px;color: #fff;padding-left: 10px">
                 <!--<div class="sidebar-toggle">-->
@@ -50,7 +50,7 @@
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img th:src="@{'/img/user2-160x160.jpg'}" class="user-image" alt="User Image">
+                                <img th:src="@{|${user.headpath}|}" class="user-image" alt="User Image">
                                 <span class="hidden-xs">[[${user.username}]]</span>
                             </a>
                             <ul class="dropdown-menu pull-right">

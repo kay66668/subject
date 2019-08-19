@@ -70,4 +70,17 @@ public class User {
     public void setHeadpath(String headpath) {
         this.headpath = headpath == null ? null : headpath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", showname='" + showname + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", post=" + post +
+                ", departmentid=" + departmentid +
+                ", headpath='" + headpath + '\'' +
+                '}';
+    }
 }

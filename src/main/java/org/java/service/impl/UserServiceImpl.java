@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
             return list.get(0);
         }
     }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
+    }
 }
