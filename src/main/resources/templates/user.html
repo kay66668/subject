@@ -64,7 +64,7 @@
             url: "/getList",
             dataType: "json",
             pagination: true, //分页
-            pageSize: 10,
+            pageSize: 5,
             pageNumber: 1,
             search: false, //显示搜索框
             contentType: "application/x-www-form-urlencoded",
@@ -78,7 +78,7 @@
                 }
                 ,
                 {
-                    title: "用户ID",
+                    title: "用户名",
                     field: 'userid',
                     align: 'center',
                     valign: 'middle'
@@ -99,7 +99,6 @@
                     title: '电话',
                     field: 'tel',
                     align: 'center'
-                    valign: 'middle'
                 },
                 {
                     title: '邮箱',
@@ -114,15 +113,14 @@
                     valign: 'middle'
                 },
                 {
-                    title: '地址',
+                    title: '家庭住址',
                     field: 'address',
                     align: 'center'
-                    valign: 'middle'
-                }
+                },
                 {
                     title: '入职时间',
                     field: 'ED',
-                    align: 'center'
+                    align: 'center',
                     valign: 'middle'
                 }
             ]

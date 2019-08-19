@@ -19,6 +19,20 @@ public class Userinfo {
 
     private Date ed;
 
+    @Override
+    public String toString() {
+        return "Userinfo{" +
+                "userid=" + userid +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", tel='" + tel + '\'' +
+                ", postbox='" + postbox + '\'' +
+                ", bir=" + bir +
+                ", address='" + address + '\'' +
+                ", ed=" + ed +
+                '}';
+    }
+
     public Integer getUserid() {
         return userid;
     }
