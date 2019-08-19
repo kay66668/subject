@@ -15,5 +15,9 @@ public interface UserService {
 
     User findUser(String username,String pwd);
 
-    List<User> findAll();
+    List<User> findAll(Integer page,Integer rows);
+
+    int findCount();
+
+
 }

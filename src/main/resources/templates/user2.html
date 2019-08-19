@@ -20,7 +20,7 @@
 				<div class="am-u-sm-12 am-u-md-6">
 					<div class="am-btn-toolbar">
 						<div class="am-btn-group am-btn-group-xs">
-							<button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+							<button type="button" class="am-btn am-btn-default btnAdd"><span class="am-icon-plus"></span> 新增</button>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 									<td>
 										<div class="am-btn-toolbar">
 											<div class="am-btn-group am-btn-group-xs">
-												<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                <button type="button"  class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit"><span class="am-icon-pencil-square-o"></span> 编辑</button>
 												<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
 											</div>
 										</div>
@@ -80,29 +80,20 @@
 							</tbody>
 						</table>
 						<div class="am-cf">
-							共 15 条记录
+							共 [[${count}]] 条记录
 							<div class="am-fr">
 								<ul class="am-pagination">
-									<li class="am-disabled">
-										<a href="#">«</a>
-									</li>
-									<li class="am-active">
-										<a href="#">1</a>
-									</li>
 									<li>
-										<a href="#">2</a>
+										<a th:href="@{|/load/1|}">«</a>
 									</li>
-									<li>
-										<a href="#">3</a>
+
+
+									<li th:each="i:${#numbers.sequence(1,maxPage)}">
+										<a th:href="@{|/load/${i}|}">[[${i}]]</a>
 									</li>
+
 									<li>
-										<a href="#">4</a>
-									</li>
-									<li>
-										<a href="#">5</a>
-									</li>
-									<li>
-										<a href="#">»</a>
+										<a th:href="@{|/load/${maxPage}|}">»</a>
 									</li>
 								</ul>
 							</div>
@@ -120,7 +111,32 @@
 				$("#chkAll").chkAll({
 					name: "chk"
 				});
+
+                $(".btnedit").click(function() {
+
+                    $.jq_Panel({
+                        title: "修改用户",
+                        iframeWidth: 500,
+                        iframeHeight: 300,
+                        url: "/forward/updateUser"
+                    });
+                });
+
+                $(".btnAdd").click(function() {
+
+                    $.jq_Panel({
+                        title: "添加用户",
+                        iframeWidth: 500,
+                        iframeHeight: 300,
+                        url: "/forward/addUser"
+                    });
+
+                });
+
 			});
+
+
+
 		</script>
 	</body>
 

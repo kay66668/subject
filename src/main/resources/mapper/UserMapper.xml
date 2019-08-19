@@ -15,7 +15,11 @@
   </sql>
 
   <select id="findAll" resultType="org.java.util.UserMessage">
-     SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id
+     SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id limit #{start},#{rows}
+  </select>
+
+  <select id="findCount" resultType="int">
+      select count(*) from user
   </select>
 
   <select id="findUser" resultType="user">

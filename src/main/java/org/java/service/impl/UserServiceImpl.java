@@ -32,7 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
-        return userMapper.findAll();
+    public List<User> findAll(Integer page,Integer rows) {
+        int start=(page-1)*rows;
+        return userMapper.findAll(start,rows);
+    }
+
+
+    @Override
+    public int findCount() {
+        return userMapper.findCount();
     }
 }
