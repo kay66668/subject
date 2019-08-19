@@ -12,6 +12,21 @@ spring:
     encoding: utf-8
     cache: false
     mode: LEGACYHTML5
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 20MB
+
+  mail:
+    username: 787386451@qq.com
+    password: dxslnfxoeqeubeie
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
 
 mybatis:
   mapper-locations: mapper/*Mapper.xml
