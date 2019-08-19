@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>css3</title>
+<link rel="stylesheet" th:href="@{'/css/style.css'}">
+</head>
+<body>
+
+<canvas id="clock" width="500" height="500" style="position:relative;margin-left:-250px;left:50%;"></canvas>
+
+<script type="text/javascript">
+var clock = document.getElementById("clock");//获取canvas
+var cxt = clock.getContext("2d");//确定是2d画布
+function drawClock(){
+	cxt.clearRect(0,0,500,500);//清空画布
+	
+	var now = new Date();//获取当前时间
+	var sec = now.getSeconds();//获得秒针
+	var min = now.getMinutes();//获取分针
+	var hour = now.getHours();//获取秒针 24小时式
+	hour =hour + min/60;
+	hour = hour>12?hour-12:hour;//把24小时制转变成12 小时制    三目运算符
+	//画出表盘
+		cxt.lineWidth=10;   //画笔的宽度
+		cxt.strokeStyle="pink"; //画笔的颜色
+		cxt.beginPath();//开始画
+		cxt.arc(250,250,200,0,360,false);//圆心的x y值,半径是200，绘图从0度到360度。false代表逆时针画，true代表顺时针
+		cxt.closePath();//结束画
+		cxt.stroke();//启动开始
+	//画出时刻度
+	for(var i=0;i<12;i++){
+		cxt.save();//保存画布，开辟新的异次元空间
+		cxt.lineWidth=10; 
+		cxt.strokeStyle="#ccc"; 
+		cxt.translate(250,250);//设置异次元的圆心
+		cxt.rotate(i*30*Math.PI/180);//设置旋转角度
+		cxt.beginPath();//设置路径
+		cxt.moveTo(0,-170);
+		cxt.lineTo(0,-190);
+		cxt.closePath();
+		cxt.stroke();
+		cxt.restore();//释放画布
+	}
+	//画出分刻度
+	for(var i=0;i<60;i++){
+		cxt.save();//保存画布，开辟新的异次元空间
+		cxt.lineWidth=5; //画笔的粗细
+		cxt.strokeStyle="#ccc"; //画笔的颜色
+		cxt.translate(250,250);//设置异次元的圆心
+		cxt.rotate(i*6*Math.PI/180);//设置旋转角度
+		cxt.beginPath();//设置路径
+		cxt.moveTo(0,-180);//开始的点
+		cxt.lineTo(0,-190);
+		cxt.closePath();
+		cxt.stroke();
+		cxt.restore();//释放画布
+	}	
+	//画出时针
+		cxt.save();//保存前面的
+		cxt.lineWidth=10;
+		cxt.strokeStyle="#ccc";
+		cxt.translate(250,250);//设置异次元的圆心
+		cxt.rotate(hour*30*Math.PI/180);//设置旋转角度
+		cxt.beginPath();
+		cxt.moveTo(0,-140);//开始的点
+		cxt.lineTo(0,10);
+		cxt.closePath();
+		cxt.stroke();//启动让线画出来
+		cxt.restore();//释放画布
+	//画出分针
+		cxt.save();//保存前面的
+		cxt.lineWidth=5;
+		cxt.strokeStyle="#ccc";
+		cxt.translate(250,250);//设置异次元的圆心
+		cxt.rotate(min*6*Math.PI/180);//设置旋转角度
+		cxt.beginPath();
+		cxt.moveTo(0,-160);//开始的点
+		cxt.lineTo(0,15);
+		cxt.closePath();
+		cxt.stroke();//启动让线画出来
+		cxt.restore();//释放画布
+	//画出秒针
+		cxt.save();//保存前面的
+		cxt.lineWidth=3;
+		cxt.strokeStyle="#f00";
+		cxt.translate(250,250);//设置异次元的圆心
+		cxt.rotate(sec*6*Math.PI/180);//设置旋转角度
+		cxt.beginPath();
+		cxt.moveTo(0,-170);//开始的点
+		cxt.lineTo(0,20);
+		cxt.closePath();
+		cxt.stroke();//启动让线画出来
+			//美化时针,画出三针的交叉点
+			cxt.beginPath();//开启路径
+			cxt.arc(0,0,5,0,360,false);
+			cxt.closePath();//闭合路径
+			//设置填充颜色
+			cxt.fillStyle="gray";
+			cxt.fill();
+			cxt.stroke();
+			//画出秒针颜色
+			cxt.beginPath();//开启路径
+			cxt.arc(0,-150,5,0,360,false);
+			cxt.fillStyle="gray";
+			cxt.fill();
+			cxt.stroke();
+			cxt.closePath();//闭合路径
+		cxt.restore();//释放画布
+	
+		
+	}
+	drawClock();//解决刷新时停顿的1秒bug
+	setInterval(drawClock,1000);
+</script>
+
+<div class="box">
+<ul>
+	<li>
+		<a>
+			<img th:src="@{'/images/1.jpg'}"/>
+			<p>通讯录</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/2.jpg'}"/>
+			<p>待办任务</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/3.jpg'}" th:href="@{'/'}"/>
+			<p>发布公文</p>
+		</a>
+	</li>
+	<li>
+		<a th:href="@{'/forward/book01'}">
+			<img th:src="@{'/images/4.jpg'}" />
+			<p>编写邮件</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/5.jpg'}"/>
+			<p>收件箱</p>
+		</a>
+	</li>
+	<li>
+		<a th:href="@{'/forward/schdel'}">
+			<img th:src="@{'/images/6.jpg'}"/>
+			<p>日程安排</p>
+		</a>
+	</li>
+	<li>
+		<a th:href="@{'/forward/schdel2'}">
+			<img th:src="@{'/images/7.jpg'}"/>
+			<p>会议行程</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/8.jpg'}"/>
+			<p>人员管理</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/9.jpg'}"/>
+			<p>公司守则</p>
+		</a>
+	</li>
+	<li>
+		<a>
+			<img th:src="@{'/images/10.jpg'}"/>
+			<p>派发事务</p>
+		</a>
+	</li>
+</ul>
+</div>
+
+
+</body>
+</html>
