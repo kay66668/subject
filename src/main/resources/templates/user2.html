@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" th:href="@{'/css/amazeui.min.css'}" type="text/css"/>
+		<link rel="stylesheet" th:href="@{'/css/admin.css'}" type="text/css"/>
+	</head>
+
+	<body>
+		<div class="admin-content-body">
+			<div class="am-cf am-padding am-padding-bottom-0">
+				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong><small></small></div>
+			</div>
+
+			<hr>
+
+			<div class="am-g">
+				<div class="am-u-sm-12 am-u-md-6">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-sm-12 am-u-md-3">
+
+				</div>
+				<div class="am-u-sm-12 am-u-md-3">
+					<div class="am-input-group am-input-group-sm">
+						<input type="text" class="am-form-field" placeholder="请输入用户姓名">
+						<span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button">搜索</button>
+          </span>
+					</div>
+				</div>
+			</div>
+			<div class="am-g">
+				<div class="am-u-sm-12">
+					<form class="am-form">
+						<table class="am-table am-table-striped am-table-hover table-main">
+							<thead>
+								<tr>
+									<th class="table-check"><input type="checkbox" id="chkAll"></th>
+									<th class="table-id">ID</th>
+									<th class="table-title">姓名</th>
+									<th class="table-type">用户名</th>
+									<th class="table-author am-hide-sm-only">密码</th>
+                                    <th class="table-title">岗位</th>
+                                    <th class="table-title">部门</th>
+									<th class="table-set">操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="k,st:${list}">
+									<td><input type="checkbox" name="chk"></td>
+									<td th:text="${st.count}"></td>
+									<td th:text="${k.showname}">
+									</td>
+									<td th:text="${k.username}"></td>
+									<td th:text="${k.pwd}">
+                                    </td>
+                                    <td th:text="${k.postname}">
+                                        会计
+                                    </td>
+                                    <td th:text="${k.NAME}">
+                                        财务部
+                                    </td>
+									<td>
+										<div class="am-btn-toolbar">
+											<div class="am-btn-group am-btn-group-xs">
+												<button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+												<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="am-cf">
+							共 15 条记录
+							<div class="am-fr">
+								<ul class="am-pagination">
+									<li class="am-disabled">
+										<a href="#">«</a>
+									</li>
+									<li class="am-active">
+										<a href="#">1</a>
+									</li>
+									<li>
+										<a href="#">2</a>
+									</li>
+									<li>
+										<a href="#">3</a>
+									</li>
+									<li>
+										<a href="#">4</a>
+									</li>
+									<li>
+										<a href="#">5</a>
+									</li>
+									<li>
+										<a href="#">»</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<hr>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" th:src="@{'/js/jquery-1.11.3.min.js'}"></script>
+		<script type="text/javascript" th:src="@{'/myplugs/js/plugs.js'}"></script>
+		<script>
+			$(function() {
+				$("#chkAll").chkAll({
+					name: "chk"
+				});
+			});
+		</script>
+	</body>
+
+</html>

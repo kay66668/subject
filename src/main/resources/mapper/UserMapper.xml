@@ -14,8 +14,12 @@
     id, username, showname, pwd, post, departmentid, headpath
   </sql>
 
+  <select id="findAll" resultType="org.java.util.UserMessage">
+     SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id
+  </select>
+
   <select id="findUser" resultType="user">
-     select * from user where username=#{username} and pwd=#{pwd};
+     select * from user where username=#{username} and pwd=#{pwd}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

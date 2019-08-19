@@ -14,4 +14,6 @@ import java.util.List;
 public interface UserService {
 
     User findUser(String username,String pwd);
+
+    List<User> findAll();
 }
