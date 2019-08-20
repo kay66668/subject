@@ -23,7 +23,7 @@ public interface UserMapper {
 
     List<User> findUser(@Param("username") String username,@Param("pwd") String pwd );
 
-    List<User> findAll(@Param("start") Integer start,@Param("rows") Integer rows);
+    List<User> findAll(@Param("start") Integer start,@Param("rows") Integer rows,@Param("username") String username);
 
-    int findCount();
+    int findCount(@Param("username") String username);
 }
