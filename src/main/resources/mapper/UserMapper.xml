@@ -15,7 +15,22 @@
   </sql>
 
   <select id="findAll" resultType="org.java.util.UserMessage">
-     SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id
+    SELECT a.* FROM (SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id) a
+    <where>
+         <if test="username!=null and username!=''">
+             and username like '%${username}%'
+         </if>
+      </where>
+      limit #{start},#{rows}
+  </select>
+
+  <select id="findCount" resultType="int">
+      select count(*) from user
+     <where>
+       <if test="username!=null and username!=''">
+           and username like '%${username}%'
+       </if>
+     </where>
   </select>
 
   <select id="findUser" resultType="user">
