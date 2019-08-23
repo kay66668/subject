@@ -49,7 +49,7 @@
   </delete>
 
   <insert id="addUser" parameterType="org.java.entity.User">
-     insert into user values(null,#{username},#{showname},#{pwd},#{post},#{departmentid},default)
+     insert into user values(null,#{username},#{showname},#{pwd},#{post},#{departmentid},#{tel},default)
   </insert>
 
   <insert id="insert" parameterType="org.java.entity.User">

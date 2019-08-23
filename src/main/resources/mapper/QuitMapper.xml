@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.QuitMapper">
+	<!-- 创建离职单 -->
+	<insert id="createQuit" parameterType="map">
+		insert into pur_order
+		values(#{id},#{name},#{applyfortime},#{hd},#{td},#{status},#{userId},#{processInstanceId},#{endtime})
+	</insert>
+	
+	<!-- 根据流程实例id，查询它对应的业务数据 -->
+	<select id="findQuit" resultType="map">
+		select * from pur_order where processInstance_id = #{processInstanceId}
+	</select>
+	
+	<!-- 根据离职单的编号，查询该离职单 -->
+	<select id="findQuitById" resultType="map">
+		select * from pur_order where id=#{id}
+	</select>
+	
+	<!-- 提交审核意见  -->
+	<insert id="submitAudit" parameterType="map">
+		insert into pur_order_audit values(#{id},#{user},#{orderId},#{info},#{defKey},#{status},#{createtime})
+	</insert>
+</mapper>
+

@@ -20,6 +20,16 @@ public class UserMessage {
 
     private String NAME;
 
+    private String tel;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -77,6 +87,7 @@ public class UserMessage {
                 ", pwd='" + pwd + '\'' +
                 ", postname='" + postname + '\'' +
                 ", NAME='" + NAME + '\'' +
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }

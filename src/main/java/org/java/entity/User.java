@@ -16,6 +16,16 @@ public class User {
 
     private String headpath;
 
+    private String tel;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -83,6 +93,7 @@ public class User {
                 ", post=" + post +
                 ", departmentid=" + departmentid +
                 ", headpath='" + headpath + '\'' +
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }

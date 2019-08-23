@@ -99,6 +99,7 @@ public class UserController {
         user.setPwd(map.get("pwd").toString());
         user.setDepartmentid(departmentid);
         user.setPost(post);
+        user.setTel(map.get("tel").toString());
         userService.addUser(user);
 
         return "redirect:load";
