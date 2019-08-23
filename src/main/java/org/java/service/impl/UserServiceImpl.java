@@ -7,6 +7,7 @@ import org.java.entity.User;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,9 +22,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
-
-    @Autowired
-    private PostMapper postMapper;
 
 
     @Override
@@ -49,13 +47,20 @@ public class UserServiceImpl implements UserService {
         return userMapper.findCount(username);
     }
 
+    @Transactional
     @Override
     public void addUser(User user) {
         userMapper.addUser(user);
     }
 
+    @Transactional
     @Override
-    public Post selectByPrimaryKey(Integer id) {
-        return postMapper.selectByPrimaryKey(id);
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
+    }
+
+    @Override
+    public User selectUser(Integer id) {
+        return userMapper.selectUser(id);
     }
 }

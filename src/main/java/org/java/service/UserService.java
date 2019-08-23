@@ -22,6 +22,9 @@ public interface UserService {
 
     void addUser(User user);
 
-    Post selectByPrimaryKey(Integer id);
+    void updateUser(User user);
+
+    User selectUser(Integer id);
+
 
 }

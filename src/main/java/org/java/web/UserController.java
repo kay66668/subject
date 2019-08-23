@@ -1,5 +1,7 @@
 package org.java.web;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.apache.ibatis.annotations.Param;
 import org.java.entity.User;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,6 @@ public class UserController {
 
         int post=0;
         int departmentid=0;
-        //System.out.println(map.get("departmentid"));
-        //System.out.println(map.get("post"));
         if(map.get("departmentid").toString().equals("人事部")){
             departmentid= 1;
             if(map.get("post").toString().equals("人事专员")){
@@ -103,4 +103,70 @@ public class UserController {
 
         return "redirect:load";
     }
+
+    @GetMapping("modify/{id}")
+    public String detail(@PathVariable("id")Integer id ,Model model){
+        User user=userService.selectUser(id);
+        model.addAttribute("user",user);
+        System.out.println(user);
+        return "updateUser";
+    }
+
+
+    @GetMapping("update")
+    public String update(@RequestParam Map<String,Object> map){
+        int post=0;
+        int departmentid=0;
+        if(map.get("departmentid").toString().equals("人事部")){
+            departmentid= 1;
+            if(map.get("post").toString().equals("人事专员")){
+                post=1;
+            }else{
+                post=2;
+            }
+        }else if(map.get("departmentid").toString().equals("财务部")){
+            departmentid=2;
+            if(map.get("post").toString().equals("出纳")){
+                post=3;
+            }else if(map.get("post").toString().equals("会计")){
+                post=4;
+            }else{
+                post=5;
+            }
+        }else if(map.get("departmentid").toString().equals("总经办")){
+            departmentid=3;
+            if(map.get("post").toString().equals("总经理")){
+                post=6;
+            }else if(map.get("post").toString().equals("行政助理")){
+                post=7;
+            }else{
+                post=8;
+            }
+        }else if(map.get("departmentid").toString().equals("销售部")){
+            departmentid=4;
+            if(map.get("post").toString().equals("销售专员")){
+                post=9;
+            }else{
+                post=10;
+            }
+        }else{
+            departmentid=5;
+            if(map.get("post").toString().equals("普通职员")){
+                post=11;
+            }else{
+                post=12;
+            }
+        }
+
+        User user=new User();
+        user.setShowname(map.get("showname").toString());
+        user.setUsername(map.get("username").toString());
+        user.setPwd(map.get("pwd").toString());
+        user.setDepartmentid(departmentid);
+        user.setPost(post);
+        userService.updateUser(user);
+
+        return "redirect:load";
+    }
+
 }

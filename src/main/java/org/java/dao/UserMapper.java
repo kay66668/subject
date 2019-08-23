@@ -28,4 +28,8 @@ public interface UserMapper {
     int findCount(@Param("username") String username);
 
     void addUser(User user);
+
+    void updateUser(User user);
+
+    User selectUser(Integer id);
 }
