@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:严辉
@@ -39,5 +42,65 @@ public class UserController {
         model.addAttribute("count",count);
         model.addAttribute("maxPage",maxPage);
         return "/user2";
+
+    }
+
+    @GetMapping("add")
+    public String addUser(@RequestParam Map<String,Object> map){
+
+        int post=0;
+        int departmentid=0;
+        //System.out.println(map.get("departmentid"));
+        //System.out.println(map.get("post"));
+        if(map.get("departmentid").toString().equals("人事部")){
+            departmentid= 1;
+            if(map.get("post").toString().equals("人事专员")){
+                post=1;
+            }else{
+                post=2;
+            }
+        }else if(map.get("departmentid").toString().equals("财务部")){
+               departmentid=2;
+            if(map.get("post").toString().equals("出纳")){
+                post=3;
+            }else if(map.get("post").toString().equals("会计")){
+                post=4;
+            }else{
+                post=5;
+            }
+        }else if(map.get("departmentid").toString().equals("总经办")){
+                departmentid=3;
+            if(map.get("post").toString().equals("总经理")){
+                  post=6;
+            }else if(map.get("post").toString().equals("行政助理")){
+                  post=7;
+            }else{
+                  post=8;
+            }
+        }else if(map.get("departmentid").toString().equals("销售部")){
+               departmentid=4;
+            if(map.get("post").toString().equals("销售专员")){
+                  post=9;
+            }else{
+                  post=10;
+            }
+        }else{
+               departmentid=5;
+            if(map.get("post").toString().equals("普通职员")){
+                  post=11;
+            }else{
+                  post=12;
+            }
+        }
+
+        User user=new User();
+        user.setShowname(map.get("showname").toString());
+        user.setUsername(map.get("username").toString());
+        user.setPwd(map.get("pwd").toString());
+        user.setDepartmentid(departmentid);
+        user.setPost(post);
+        userService.addUser(user);
+
+        return "redirect:load";
     }
 }

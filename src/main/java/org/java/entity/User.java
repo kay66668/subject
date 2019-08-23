@@ -1,6 +1,7 @@
 package org.java.entity;
 
 public class User {
+
     private Integer id;
 
     private String username;
@@ -70,6 +71,7 @@ public class User {
     public void setHeadpath(String headpath) {
         this.headpath = headpath == null ? null : headpath.trim();
     }
+
 
     @Override
     public String toString() {

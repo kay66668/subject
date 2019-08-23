@@ -1,6 +1,8 @@
 package org.java.service.impl;
 
+import org.java.dao.PostMapper;
 import org.java.dao.UserMapper;
+import org.java.entity.Post;
 import org.java.entity.User;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PostMapper postMapper;
 
 
     @Override
@@ -42,5 +47,15 @@ public class UserServiceImpl implements UserService {
     public int findCount(String username) {
 
         return userMapper.findCount(username);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
+
+    @Override
+    public Post selectByPrimaryKey(Integer id) {
+        return postMapper.selectByPrimaryKey(id);
     }
 }

@@ -45,25 +45,23 @@
 									<th class="table-title">姓名</th>
 									<th class="table-type">用户名</th>
 									<th class="table-author am-hide-sm-only">密码</th>
-                                    <th class="table-title">岗位</th>
-                                    <th class="table-title">部门</th>
+									<th class="table-title">部门</th>
+									<th class="table-title">岗位</th>
 									<th class="table-set">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="k,st:${list}">
 									<td><input type="checkbox" name="chk"></td>
-									<td th:text="${st.count}"></td>
+									<td th:text="${st.count+(page-1)*rows}"></td>
 									<td th:text="${k.showname}">
 									</td>
 									<td th:text="${k.username}"></td>
 									<td th:text="${k.pwd}">
                                     </td>
+									<td th:text="${k.NAME}">
+									</td>
                                     <td th:text="${k.postname}">
-                                        会计
-                                    </td>
-                                    <td th:text="${k.NAME}">
-                                        财务部
                                     </td>
 									<td>
 										<div class="am-btn-toolbar">
@@ -126,7 +124,7 @@
                         title: "添加用户",
                         iframeWidth: 500,
                         iframeHeight: 300,
-                        url: "/forward/addUser"
+                        url: "/forward/post1"
                     });
 
                 });

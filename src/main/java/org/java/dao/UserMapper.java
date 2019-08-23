@@ -26,4 +26,6 @@ public interface UserMapper {
     List<User> findAll(@Param("start") Integer start,@Param("rows") Integer rows,@Param("username") String username);
 
     int findCount(@Param("username") String username);
+
+    void addUser(User user);
 }

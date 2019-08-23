@@ -1,5 +1,6 @@
 package org.java.service;
 
+import org.java.entity.Post;
 import org.java.entity.User;
 
 import java.util.List;
@@ -19,5 +20,8 @@ public interface UserService {
 
     int findCount(String username);
 
+    void addUser(User user);
+
+    Post selectByPrimaryKey(Integer id);
 
 }
