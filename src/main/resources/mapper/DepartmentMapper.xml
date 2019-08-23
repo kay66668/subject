@@ -33,7 +33,7 @@
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
+      <if test="NAME != null">
         NAME,
       </if>
       <if test="leader != null">
@@ -90,4 +90,8 @@
       tel = #{tel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getList1" resultType="map">
+    select * from department
+  </select>
 </mapper>

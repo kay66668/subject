@@ -10,54 +10,41 @@
     <link th:href="@{'/css/table.css'}" rel="stylesheet" type="text/css" />
 </head>
 <body style="background-color: #ecf0f5;font-family: 微软雅黑;color: #475059;min-width: 1000px;overflow: auto">
-<div class="news_main">
+<div class="notice_main">
 
-    <div class="l_left news_left">
-
-        <h6>岗位目录</h6>
-        <div class="tree_left_top">
-            <div class=" order_ztree l_left organize_ztree" style="width: 100%">
-                <p><ul id="treeDemo" class="ztree"  style=" overflow:auto;margin-left: 20px"></ul></p>
-            </div>
+    <div class="notice_check">
+        <div class="btn-group l_left" style="margin-right: 4px">
+            <button type="button" class="btn btn-default change" style="height: 30px;line-height: 30px;padding: 0 12px !important;font-size: 12px">选择条件</button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 30px;line-height: 30px">
+                <span class="caret"></span>
+                <span class="sr-only"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>用户名</li>
+                <li>部门名称</li>
+                <li>职位名称</li>
+            </ul>
         </div>
-    </div>
-    <div class="l_left news_right">
-        <h6>岗位管理</h6>
+        <div class="l_left">
+            <input type="text" class="find_input">
 
-        <div class="notice_check">
-            <div class="btn-group l_left" style="margin-right: 4px">
-                <button type="button" class="btn btn-default change" style="height: 30px;line-height: 30px;padding: 0 12px !important;font-size: 12px">选择条件</button>
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 30px;line-height: 30px">
-                    <span class="caret"></span>
-                    <span class="sr-only"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>岗位名称</li>
-                    <li>岗位编号</li>
-                </ul>
-            </div>
-            <div class="l_left">
-                <input type="text" class="find_input">
-
-            </div>
-            <button class="check_btn">查询</button>
-            <div class="notice_nav r_right">
-                <a class="btn btn-default" onclick="add_department()"><span class="glyphicon glyphicon-plus"></span>新增</a>
-                <a class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>删除</a>
-                <a class="btn btn-default" onclick="add_department()"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
-            </div>
-            <div class="clear"></div>
         </div>
-        <ul class="news_table department_table">
-            <li>
-                <table id="table" class="table_style" style="margin: 0 auto" ></table>
-            </li>
-        </ul>
+        <button class="check_btn">查询</button>
 
+
+        <div class="notice_nav r_right">
+            <a class="btn btn-default" onclick="add_post()"><span class="glyphicon glyphicon-plus"></span>新增</a>
+            <a class="btn btn-default" href="/del"><span class="glyphicon glyphicon-remove"></span>删除</a>
+            <a class="btn btn-default" onclick="add_post()"><span class="glyphicon glyphicon-pencil"></span>编辑</a>
+        </div>
+        <div class="clear"></div>
     </div>
-    <div class="clear"></div>
+
+
+    <table id="table" class="table_style" style="margin: 0 auto" > </table>
 
 </div>
+
 <script th:src="@{'/js/jquery/jQuery-2.2.0.min.js'}"></script>
 <script th:src="@{'/js/bstable/js/bootstrap.min.js'}"></script>
 <script th:src="@{'/js/bstable/js/bootstrap-table.js'}"></script>
@@ -73,7 +60,7 @@
         table();
         nav();
     });
-    function add_department(){
+    function add_post(){
         layer.open({
             type: 2,
             title: '添加岗位',
@@ -82,7 +69,7 @@
             skin: 'layui-layer-rim',
             closeBtn:1,
             area: ['700px', '400px'],
-            content: 'department_tail.html'
+            content: 'post_tail.html'
         });
     }
     function nav(){
@@ -100,7 +87,7 @@
             method: "get",
             striped: true,
             singleSelect: false,
-            url: "json/log.json",
+            url: "/getList2",
             dataType: "json",
             pagination: true, //分页
             pageSize: 10,
@@ -123,45 +110,10 @@
                     valign: 'middle'
                 },
                 {
-                    title: '标题',
-                    field: 'title',
+                    title: '名称',
+                    field: 'postname',
                     align: 'center',
                     valign: 'middle'
-                },
-                {
-                    title: '操作用户',
-                    field: 'person',
-                    align: 'center',
-                    valign: 'middle'
-                },
-
-                {
-                    title: 'IP地址',
-                    field: 'type',
-                    align: 'center'
-                },
-                {
-                    title: '操作时间',
-                    field: 'date',
-                    align: 'center'
-                },
-                {
-                    title: '操作类型',
-                    field: 'oper',
-                    align: 'center'
-                },
-                {
-                    title: '执行结果',
-                    field: 'result',
-                    align: 'center',
-                    formatter: function (cellval, row) {
-                        if (cellval =='失败'){
-                            return '<div  style="color:red">'+cellval+'</div>';
-                        } else  if (cellval =='成功'){
-                            return '<div  style="color:green">'+cellval+'</div>';
-                        }else {
-                            return cellval;
-                        }}
                 }
             ]
         });

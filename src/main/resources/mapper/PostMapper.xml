@@ -55,4 +55,8 @@
     set postname = #{postname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getList2" resultType="map">
+    select * from post
+  </select>
 </mapper>

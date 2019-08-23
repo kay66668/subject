@@ -3,6 +3,8 @@ package org.java.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.java.entity.Post;
 
+import java.util.List;
+
 @Mapper
 public interface PostMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +18,6 @@ public interface PostMapper {
     int updateByPrimaryKeySelective(Post record);
 
     int updateByPrimaryKey(Post record);
+
+    public List<Post> getList2();
 }

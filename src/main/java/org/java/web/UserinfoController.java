@@ -17,37 +17,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class UserinfoController {
 
     @Autowired
     private UserinfoService userinfoService;
 
-    @RequestMapping("/add")
+    @RequestMapping("/addUserinfo")
     @ResponseBody
     public void add(Userinfo userinfo){
         userinfoService.add(userinfo);
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/updateUserinfo")
     @ResponseBody
     public void update(Userinfo userinfo){
         userinfoService.update(userinfo);
     }
 
-    @RequestMapping("/del")
+    @RequestMapping("/delUserinfo")
     @ResponseBody
     public void del(Integer userid){
         userinfoService.del(userid);
     }
 
     @GetMapping("/getList")
-    public String getList(Model model){
+    @ResponseBody
+    public List getList(Model model){
         List<Userinfo> list = userinfoService.getList();
 
         model.addAttribute("list",list);
 
-        return "/forward/user";
+        return list;
     }
 
     @InitBinder

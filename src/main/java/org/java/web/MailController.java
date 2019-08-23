@@ -15,7 +15,9 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @RestController
+
 public class MailController {
+
     @Autowired
     private JavaMailSenderImpl mailSender;
     @Value("${spring.mail.username}")

@@ -13,31 +13,21 @@
 </head>
 
 <body style="border-radius: 8px;width: 680px">
-<form th:action="@{'/addDepartment'}" method="post">
+<form th:action="@{'/addPost'}" method="post">
 <div class="top">
     <div>
         <div class="top_out">
             <table class="table">
                 <tbody>
                 <tr>
-                    <td>部门编号<span>*</span></td>
+                    <td>岗位编号<span>*</span></td>
                     <td>
                         <input type="text" name="id" required>
                     </td>
-                    <td>部门名称<span>*</span></td>
+                    <td>岗位名称<span>*</span></td>
                     <td>
-                    <input type="text" name="name" required>
+                    <input type="text" name="postname" required>
                     </td>
-                </tr>
-                <tr>
-                    <td>负责人<span></span></td>
-                    <td><input type="text" name="leader"></td>
-                    <td>电话号<span></span></td>
-                    <td><input type="text" name="tel"></td>
-                </tr>
-                <tr>
-                    <td>部门职能说明<span></span></td>
-                    <td colspan = "8" style="text-align: left"><textarea name="fi"></textarea></td>
                 </tr>
                 </tbody>
             </table>
