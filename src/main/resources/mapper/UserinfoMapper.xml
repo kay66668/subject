@@ -116,7 +116,7 @@
     where userid = #{userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.java.entity.Userinfo">
-    update user
+    update userinfo
     set age = #{age,jdbcType=INTEGER},
       gender = #{gender,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
@@ -126,9 +126,31 @@
       ed = #{ed,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
-  
+
   <select id="getList" resultType="userinfo">
     select * from userinfo
+    <where>
+      <if test="tel!=null and tel !=''">
+        and tel like '%${tel}%'
+      </if>
+      <if test="postbox!=null and postbox !=''">
+        and postbox like '%${postbox}%'
+      </if>
+    </where>
+    limit #{start},#{rows}
   </select>
+  <!--查询总数-->
+  <select id="getCount" resultType="int">
+    select count(*) from userinfo
+    <where>
+      <if test="tel!=null and tel !=''">
+        and tel like '%${tel}%'
+      </if>
+      <if test="postbox!=null and postbox !=''">
+        and postbox like '%${postbox}%'
+      </if>
+    </where>
+  </select>
+
 
 </mapper>

@@ -1,6 +1,7 @@
 package org.java.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.java.entity.Post;
 
 import java.util.List;
@@ -19,5 +20,8 @@ public interface PostMapper {
 
     int updateByPrimaryKey(Post record);
 
-    public List<Post> getList2();
+    public List<Post> getList2(@Param("start") int start, @Param("rows") int rows, @Param("postname") String postname);
+
+    public int getCount2(@Param("postname") String postname);
+
 }

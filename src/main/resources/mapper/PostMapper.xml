@@ -56,7 +56,22 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="getList2" resultType="map">
+  <select id="getList2" resultType="post">
     select * from post
+    <where>
+      <if test="postname!=null and postname !=''">
+        and postname like '%${postname}%'
+      </if>
+    </where>
+    limit #{start},#{rows}
+  </select>
+  <!--查询总数-->
+  <select id="getCount2" resultType="int">
+    select count(*) from post
+    <where>
+      <if test="postname!=null and postname !=''">
+        and postname like '%${postname}%'
+      </if>
+    </where>
   </select>
 </mapper>

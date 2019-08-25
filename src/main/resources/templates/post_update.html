@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui.form小例子</title>
+    <link rel="stylesheet" th:href="@{'/layui/css/layui.css'}" media="all">
+    <script th:src="@{'/layui/layui.js'}"></script>
+    <script th:src="@{'/userinfo.js'}"></script>
+</head>
+<body>
+<form class="layui-form" id="addFrm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-inline">
+            <input type="text" name="id" placeholder="请输入ID" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="postname" placeholder="请输入名称" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+</form>
+<script src="layui.js"></script>
+<script>
+    layui.use(['form','jquery','layer'],function () {
+        var form = layui.form;
+        var $ = layui.$;
+        var layer = layui.layer;
+
+        form.on('submit(formDemo)',function (data) {
+            $.ajax({
+                url:"/updatePost",
+                type:"get",
+                data:$("#addFrm").serialize(),
+                success:function () {
+                    window.parent.location.reload();
+
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

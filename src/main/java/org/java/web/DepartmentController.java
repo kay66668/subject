@@ -1,14 +1,18 @@
 package org.java.web;
 
 import org.java.entity.Department;
+import org.java.entity.Userinfo;
 import org.java.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DepartmentController {
@@ -35,13 +39,20 @@ public class DepartmentController {
         departmentService.del(id);
     }
 
-    @RequestMapping("/getList1")
+    @RequestMapping("getList1")
     @ResponseBody
-    public List getList1(Model model){
-        List<Department> list = departmentService.getList1();
+    public Map getList(Integer page, Integer limit, String name, String leader){
+        Map map = new HashMap();
 
-        model.addAttribute("list",list);
+        List<Department> list = departmentService.getList1(page,limit,name,leader);
+        int count = departmentService.getCount1(name,leader);
 
-        return list;
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",count);
+        map.put("data",list);
+
+        return map;
+
     }
 }

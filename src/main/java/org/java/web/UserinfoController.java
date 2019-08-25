@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 public class UserinfoController {
 
     @Autowired
@@ -35,20 +35,29 @@ public class UserinfoController {
         userinfoService.update(userinfo);
     }
 
+
+
     @RequestMapping("/delUserinfo")
     @ResponseBody
     public void del(Integer userid){
         userinfoService.del(userid);
     }
 
-    @GetMapping("/getList")
-    @ResponseBody
-    public List getList(Model model){
-        List<Userinfo> list = userinfoService.getList();
+    @GetMapping("getList")
+    public Map getList(Integer page,Integer limit,String tel,String postbox){
+        Map map = new HashMap();
 
-        model.addAttribute("list",list);
+        List<Userinfo> list = userinfoService.getList(page,limit,tel,postbox);
+        int count = userinfoService.getCount(tel,postbox);
 
-        return list;
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",count);
+        map.put("data",list);
+        System.out.println(list);
+
+        return map;
+
     }
 
     @InitBinder

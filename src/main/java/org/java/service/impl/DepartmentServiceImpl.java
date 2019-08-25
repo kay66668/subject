@@ -30,7 +30,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> getList1() {
-        return mapper.getList1();
+    public List<Department> getList1(int page, int rows, String name, String leader) {
+        int start = (page-1)*rows;
+
+        return mapper.getList1(start,rows,name,leader);
     }
+
+    @Override
+    public int getCount1(String name, String leader) {
+        return mapper.getCount1(name,leader);
+    }
+
 }

@@ -1,73 +1,95 @@
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>无标题文档</title>
-    <link th:href="@{'/css/index.css'}" rel="stylesheet" type="text/css" />
-    <link th:href="@{'/css/bootstrap.min.css'}" rel="stylesheet" type="text/css" />
-    <link th:href="@{'/css/zTreeStyle/zTreeStyle.css'}" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <title>layui.form小例子</title>
+    <link rel="stylesheet" th:href="@{'/layui/css/layui.css'}" media="all">
+    <script th:src="@{'/layui/layui.js'}"></script>
+    <script th:src="@{'/userinfo.js'}"></script>
 </head>
-<body style="border-radius: 8px;width: 680px;overflow: hidden">
-<form th:action="@{'/addUserinfo'}" method="get">
-<div class="top">
-    <div>
-        <div class="top_out">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>用户ID<span class="span">*</span></td>
-                    <td><input type="text" name="userid" required   minlength ="1"></td>
-                    <td>年龄<span class="span"></span></td>
-                    <td><input type="text" name="age"></td>
-                </tr>
-                    <td>性别<span class="span"></span></td>
-                    <td>
-                        <select name="gender">
-                            <option>男</option>
-                            <option>女</option>
-                        </select>
-                    </td>
-                    <td>生日<span class="span"></span></td>
-                    <td><input type="date" name="bir"></td>
-                </tr>
-                <tr>
-                    <td>手机<span class="span"></span></td>
-                    <td><input type="text" name="tel"></td>
-                    <td>入职时间<span class="span"></span></td>
-                    <td><input type="date" name="ed"></td>
-                </tr>
-                <tr>
-                    <td>邮箱<span class="span"></span></td>
-                    <td><input type="email" name="postbox" required></td>
-                </tr>
-                <tr>
-                    <td>地址<span class="span"></span></td>
-                    <td colspan = "8" style="text-align: left"><textarea name="address"></textarea></td>
-                </tr>
-                </tbody>
-            </table>
+<body>
+<form class="layui-form" id="addFrm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-inline">
+            <input type="text" name="userid" placeholder="请输入ID" lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="notice_bot">
-        <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
-        <div class="r_right but_p"><button class="but_save" type="submit">保存</button><button class="but_close" onclick="Cancel()">关闭</button></div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <input type="radio" name="gender" value="男" title="男" checked>
+            <input type="radio" name="gender" value="女" title="女">
+        </div>
     </div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-inline">
+            <input type="text" name="age" placeholder="请输入年龄" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-inline">
+            <input type="text" name="tel" placeholder="请输入电话" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-inline">
+            <input type="text" name="postbox" placeholder="请输入邮箱" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生日</label>
+        <div class="layui-input-inline">
+            <input type="date" name="bir"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">家庭住址</label>
+        <div class="layui-input-inline">
+            <input type="text" name="address" placeholder="请输入家庭住址" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">入职时间</label>
+        <div class="layui-input-inline">
+            <input type="date" name="ed"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
 </form>
-<script th:src="@{'/js/jquery-2.2.0.min.js'}"></script>
-<script th:src="@{'/js/bstable/js/bootstrap.min.js'}"></script>
-<script th:src="@{'/js/bstable/js/bootstrap-table.js'}"></script>
-<script th:src="@{'/js/bstable/js/bootstrap-table-zh-CN.min.js'}"></script>
-<script type="text/javascript" th:src="@{'/js/demo/jquery.ztree.core-3.5.js'}"></script>
-<script type="text/javascript" th:src="@{'/js/ztree/jquery.ztree.excheck-3.5.js'}"></script>
-<script type="text/javascript" th:src="@{'/js/ztree/jquery.ztree.exedit-3.5.js'}"></script>
-<script th:src="@{'/js/organize.js'}"></script>
+<script src="layui.js"></script>
 <script>
-    function Cancel() {
-        var index = parent.layer.getFrameIndex(window.name);
-        parent.layer.close(index);
-    }
+    layui.use(['form','jquery','layer'],function () {
+        var form = layui.form;
+        var $ = layui.$;
+        var layer = layui.layer;
+
+        form.on('submit(formDemo)',function (data) {
+            $.ajax({
+                url:"/addUserinfo",
+                type:"get",
+                data:$("#addFrm").serialize(),
+                success:function () {
+                    window.parent.location.reload();
+
+                }
+            });
+            return false;
+        });
+    });
 </script>
 </body>
 </html>

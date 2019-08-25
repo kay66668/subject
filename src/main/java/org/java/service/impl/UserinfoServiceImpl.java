@@ -36,10 +36,17 @@ public class UserinfoServiceImpl implements UserinfoService {
     }
 
     @Override
-    public List<Userinfo> getList(){
+    public List<Userinfo> getList(int page,int rows,String tel,String postbox){
 
-        return mapper.getList();
+        int start = (page-1)*rows;
 
+        return mapper.getList(start,rows,tel,postbox);
+
+    }
+
+    @Override
+    public int getCount(String tel,String postbox){
+        return mapper.getCount(tel,postbox);
     }
 
 }

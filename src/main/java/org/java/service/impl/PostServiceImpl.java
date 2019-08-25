@@ -34,7 +34,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getList2(){
-       return mapper.getList2();
+    public List<Post> getList2(int page,int rows,String postname){
+       int start = (page-1)*rows;
+
+       return mapper.getList2(start,rows,postname);
+    }
+
+    @Override
+    public int getCount2(String postname) {
+        return mapper.getCount2(postname);
     }
 }

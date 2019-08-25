@@ -22,6 +22,8 @@ public interface UserinfoMapper {
 
     int updateByPrimaryKey(Userinfo record);
 
-    public List<Userinfo> getList();
+    public List<Userinfo> getList(@Param("start") int start,@Param("rows") int rows,@Param("tel") String tel,@Param("postbox") String postbox);
+
+    public int getCount(@Param("tel") String tel,@Param("postbox") String postbox);
 }
 

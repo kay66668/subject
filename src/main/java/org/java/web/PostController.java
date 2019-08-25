@@ -1,5 +1,6 @@
 package org.java.web;
 
+import org.java.entity.Department;
 import org.java.entity.Post;
 import org.java.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PostController {
@@ -33,13 +36,20 @@ public class PostController {
         postService.del(id);
     }
 
-    @RequestMapping("/getList2")
+    @RequestMapping("getList2")
     @ResponseBody
-    public List<Post> getList2(Model model){
-        List<Post> list = postService.getList2();
+    public Map getList(Integer page, Integer limit, String postname){
+        Map map = new HashMap();
 
-        model.addAttribute("list",list);
+        List<Post> list = postService.getList2(page,limit,postname);
+        int count = postService.getCount2(postname);
 
-        return list;
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",count);
+        map.put("data",list);
+
+        return map;
+
     }
 }
