@@ -26,5 +26,7 @@ public interface UserService {
 
     User selectUser(Integer id);
 
+    void delUser(Integer id);
+
 
 }

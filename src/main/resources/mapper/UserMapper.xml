@@ -149,6 +149,6 @@
   </update>
 
   <update id="updateUser" parameterType="user">
-      update user set username=#{username}, showname=#{showname},pwd=#{pwd},post=#{post},#departmentid=#{departmentid} where id=#{id}
+      update user set username=#{username}, showname=#{showname},pwd=#{pwd},post=#{post},departmentid=#{departmentid},tel=#{tel} where id=#{id}
   </update>
 </mapper>

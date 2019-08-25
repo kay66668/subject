@@ -1,7 +1,5 @@
 package org.java.web;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import org.apache.ibatis.annotations.Param;
 import org.java.entity.User;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -101,7 +98,6 @@ public class UserController {
         user.setPost(post);
         user.setTel(map.get("tel").toString());
         userService.addUser(user);
-
         return "redirect:load";
     }
 
@@ -109,7 +105,6 @@ public class UserController {
     public String detail(@PathVariable("id")Integer id ,Model model){
         User user=userService.selectUser(id);
         model.addAttribute("user",user);
-        System.out.println(user);
         return "updateUser";
     }
 
@@ -160,14 +155,23 @@ public class UserController {
         }
 
         User user=new User();
+        user.setId(Integer.parseInt(map.get("id").toString()));
         user.setShowname(map.get("showname").toString());
         user.setUsername(map.get("username").toString());
         user.setPwd(map.get("pwd").toString());
         user.setDepartmentid(departmentid);
+        user.setTel(map.get("tel").toString());
         user.setPost(post);
+        System.out.println(user);
         userService.updateUser(user);
-
         return "redirect:load";
+    }
+
+
+    @GetMapping("del/{id}")
+    public String delUser(@PathVariable("id") Integer id){
+        userService.delUser(id);
+        return  "redirect:/load";
     }
 
 }

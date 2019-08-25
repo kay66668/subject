@@ -63,4 +63,10 @@ public class UserServiceImpl implements UserService {
     public User selectUser(Integer id) {
         return userMapper.selectUser(id);
     }
+
+    @Transactional
+    @Override
+    public void delUser(Integer id) {
+        userMapper.deleteByPrimaryKey(id);
+    }
 }
