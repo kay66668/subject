@@ -1,7 +1,10 @@
 package org.java.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.java.entity.Department;
+
+import java.util.List;
 
 @Mapper
 public interface DepartmentMapper {
@@ -16,4 +19,9 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+
+    public List<Department> getList1(@Param("start") int start, @Param("rows") int rows, @Param("name") String name, @Param("leader") String leader);
+
+    public int getCount1(@Param("name") String name, @Param("leader") String leader);
+
 }

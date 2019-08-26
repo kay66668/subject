@@ -1,5 +1,7 @@
 package org.java.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Userinfo {
@@ -13,11 +15,27 @@ public class Userinfo {
 
     private String postbox;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date bir;
 
     private String address;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ed;
+
+    @Override
+    public String toString() {
+        return "Userinfo{" +
+                "userid=" + userid +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", tel='" + tel + '\'' +
+                ", postbox='" + postbox + '\'' +
+                ", bir=" + bir +
+                ", address='" + address + '\'' +
+                ", ed=" + ed +
+                '}';
+    }
 
     public Integer getUserid() {
         return userid;

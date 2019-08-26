@@ -7,19 +7,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
-
-  thymeleaf:
-    encoding: utf-8
-    cache: false
-    mode: LEGACYHTML5
-  servlet:
-    multipart:
-      max-request-size: 100MB
-      max-file-size: 20MB
-  activiti:
-    database-schema: update
-    check-process-definitions: false
-
   mail:
     username: 787386451@qq.com
     password: dxslnfxoeqeubeie
@@ -29,8 +16,21 @@ spring:
         smtp:
           ssl:
             enable: true
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    mode: LEGACYHTML5
 
-
+  activiti:
+    database-schema: update #\u6570\u636Eactiviti\u6570\u636E\u8868\u5DF2\u5B58\u5728\u7EE7\u7EED\u4F7F\u7528\uFF0C\u4E0D\u5B58\u5728\uFF0C\u5219\u521B\u5EFA
+    check-process-definitions: false
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 20MB
 mybatis:
   mapper-locations: mapper/*Mapper.xml
   type-aliases-package: org.java.entity
+
+
+

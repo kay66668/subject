@@ -33,7 +33,7 @@
       <if test="id != null">
         id,
       </if>
-      <if test="name != null">
+      <if test="NAME != null">
         NAME,
       </if>
       <if test="leader != null">
@@ -90,4 +90,29 @@
       tel = #{tel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getList1" resultType="department">
+    select * from department
+    <where>
+      <if test="name!=null and name !=''">
+        and name like '%${name}%'
+      </if>
+      <if test="leader!=null and leader !=''">
+        and leader like '%${leader}%'
+      </if>
+    </where>
+    limit #{start},#{rows}
+  </select>
+  <!--查询总数-->
+  <select id="getCount1" resultType="int">
+  select count(*) from department
+  <where>
+    <if test="name!=null and name !=''">
+      and name like '%${name}%'
+    </if>
+    <if test="leader!=null and leader !=''">
+      and leader like '%${leader}%'
+    </if>
+  </where>
+  </select>
 </mapper>

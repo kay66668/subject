@@ -1,95 +1,73 @@
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>无标题文档</title>
-    <link th:href="@{'/css/tail.css'}" rel="stylesheet" type="text/css">
-    <link th:href="@{'/css/bootstrap.min.css'}" rel="stylesheet" type="text/css" />
-    <style>
-        .top select,.top input[type=text],.top input[type=password],.top input[type=email]{text-align: left;width: 247px;height:28px;border-radius: 4px;font-size: 12px;border: 1px #ccc solid}
-        .top td textarea{width: 586px;height: 70px;resize: none;border-radius: 4px;border: 1px #ccc solid}
-    </style>
+    <meta charset="utf-8">
+    <title>layui.form小例子</title>
+    <link rel="stylesheet" th:href="@{'/layui/css/layui.css'}" media="all">
+    <script th:src="@{'/layui/layui.js'}"></script>
+    <script th:src="@{'/userinfo.js'}"></script>
 </head>
-
-<body style="border-radius: 8px;width: 680px">
-<form>
-<div class="top">
-    <div>
-        <div class="top_out">
-            <table class="table">
-                <tbody>
-                <tr>
-                    <td>上级部门<span>*</span></td>
-                    <td>
-                        <select>
-                            <option>成都分公司</option>
-                            <option>成都分公司</option>
-                            <option>杭州总部</option>
-                        </select>
-                    </td>
-                    <td>负责人<span>*</span></td>
-                    <td>
-                        <select>
-                            <option>全部</option>
-                            <option>Java工程师</option>
-                            <option>前端工程师</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>部门名称<span>*</span></td>
-                    <td>
-                    <input type="text" required>
-                    </td>
-                    <td>部门编号<span>*</span></td>
-                    <td>
-                    <input type="text" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>部门简称<span></span></td>
-                    <td><input type="text"></td>
-                    <td>部门性质<span></span></td>
-                    <td>
-                        <select>
-                            <option>--请选择--</option>
-                            <option>综合性</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>电话号<span></span></td>
-                    <td><input type="text"></td>
-                    <td>分机号<span></span></td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>邮箱<span></span></td>
-                    <td><input type="email"></td>
-                    <td>传真<span></span></td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>备注<span></span></td>
-                    <td colspan = "8" style="text-align: left"><textarea></textarea></td>
-                </tr>
-                </tbody>
-            </table>
+<body>
+<form class="layui-form" id="addFrm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-inline">
+            <input type="text" name="id" placeholder="请输入ID" lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="notice_bot">
-        <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
-        <div class="r_right but_p"><button class="but_save">保存</button><button class="but_close" onclick="Cancel()">关闭</button></div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="name" placeholder="请输入名称" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
     </div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">负责人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="leader" placeholder="请输入负责人" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-inline">
+            <input type="text" name="tel" placeholder="请输入电话" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">职能说明</label>
+        <div class="layui-input-inline">
+            <input type="text" name="fi" placeholder="请输入职能" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
 </form>
-</body>
-<script th:src="@{'/js/jquery-2.2.0.min.js'}"></script>
+<script src="layui.js"></script>
 <script>
-    function Cancel() {
-        var index = parent.layer.getFrameIndex(window.name);
-        parent.layer.close(index);
-    }
+    layui.use(['form','jquery','layer'],function () {
+        var form = layui.form;
+        var $ = layui.$;
+        var layer = layui.layer;
+
+        form.on('submit(formDemo)',function (data) {
+            $.ajax({
+                url:"/addDepartment",
+                type:"get",
+                data:$("#addFrm").serialize(),
+                success:function () {
+                    window.parent.location.reload();
+
+                }
+            });
+            return false;
+        });
+    });
 </script>
+</body>
 </html>
