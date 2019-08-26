@@ -1,6 +1,7 @@
 package org.java.entity;
 
 public class User {
+
     private Integer id;
 
     private String username;
@@ -14,6 +15,16 @@ public class User {
     private Integer departmentid;
 
     private String headpath;
+
+    private String tel;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public Integer getId() {
         return id;
@@ -71,6 +82,7 @@ public class User {
         this.headpath = headpath == null ? null : headpath.trim();
     }
 
+
     @Override
     public String toString() {
         return "User{" +
@@ -81,6 +93,7 @@ public class User {
                 ", post=" + post +
                 ", departmentid=" + departmentid +
                 ", headpath='" + headpath + '\'' +
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }

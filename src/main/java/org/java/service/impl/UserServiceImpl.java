@@ -1,6 +1,8 @@
 package org.java.service.impl;
 
+import org.java.dao.PostMapper;
 import org.java.dao.UserMapper;
+import org.java.entity.Post;
 import org.java.entity.User;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private PostMapper postMapper;
+
 
     @Override
     public User findUser(String username, String pwd) {
@@ -32,14 +37,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll(Integer page,Integer rows) {
+    public List<User> findAll(Integer page,Integer rows,String username) {
         int start=(page-1)*rows;
-        return userMapper.findAll(start,rows);
+        return userMapper.findAll(start,rows,username);
     }
 
 
     @Override
-    public int findCount() {
-        return userMapper.findCount();
+    public int findCount(String username) {
+
+        return userMapper.findCount(username);
+    }
+
+    @Override
+    public void addUser(User user) {
+        userMapper.addUser(user);
+    }
+
+    @Override
+    public Post selectByPrimaryKey(Integer id) {
+        return postMapper.selectByPrimaryKey(id);
     }
 }

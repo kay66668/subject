@@ -13,9 +13,8 @@
 			<div class="am-cf am-padding am-padding-bottom-0">
 				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong><small></small></div>
 			</div>
-
 			<hr>
-
+			<form class="am-form" method="post" th:action="@{'/load'}">
 			<div class="am-g">
 				<div class="am-u-sm-12 am-u-md-6">
 					<div class="am-btn-toolbar">
@@ -29,16 +28,15 @@
 				</div>
 				<div class="am-u-sm-12 am-u-md-3">
 					<div class="am-input-group am-input-group-sm">
-						<input type="text" class="am-form-field" placeholder="请输入用户姓名">
+						<input type="text" name="username" class="am-form-field" placeholder="请输入用户姓名">
 						<span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
+            <button class="am-btn am-btn-default" type="submit">搜索</button>
           </span>
 					</div>
 				</div>
 			</div>
 			<div class="am-g">
 				<div class="am-u-sm-12">
-					<form class="am-form">
 						<table class="am-table am-table-striped am-table-hover table-main">
 							<thead>
 								<tr>
@@ -47,25 +45,23 @@
 									<th class="table-title">姓名</th>
 									<th class="table-type">用户名</th>
 									<th class="table-author am-hide-sm-only">密码</th>
-                                    <th class="table-title">岗位</th>
-                                    <th class="table-title">部门</th>
+									<th class="table-title">部门</th>
+									<th class="table-title">岗位</th>
 									<th class="table-set">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="k,st:${list}">
 									<td><input type="checkbox" name="chk"></td>
-									<td th:text="${st.count}"></td>
+									<td th:text="${st.count+(page-1)*rows}"></td>
 									<td th:text="${k.showname}">
 									</td>
 									<td th:text="${k.username}"></td>
 									<td th:text="${k.pwd}">
                                     </td>
+									<td th:text="${k.NAME}">
+									</td>
                                     <td th:text="${k.postname}">
-                                        会计
-                                    </td>
-                                    <td th:text="${k.NAME}">
-                                        财务部
                                     </td>
 									<td>
 										<div class="am-btn-toolbar">
@@ -75,7 +71,7 @@
 											</div>
 										</div>
 									</td>
-								</tr>
+				 				</tr>
 
 							</tbody>
 						</table>
@@ -127,7 +123,7 @@
                     $.jq_Panel({
                         title: "添加用户",
                         iframeWidth: 500,
-                        iframeHeight: 300,
+                        iframeHeight: 400,
                         url: "/forward/addUser"
                     });
 

@@ -20,8 +20,11 @@ public interface PostMapper {
 
     int updateByPrimaryKey(Post record);
 
+<<<<<<< HEAD
     public List<Post> getList2(@Param("start") int start, @Param("rows") int rows, @Param("postname") String postname);
 
     public int getCount2(@Param("postname") String postname);
 
+=======
+>>>>>>> origin/master
 }

@@ -1,82 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>添加角色</title>
+<link th:href="@{'/layui/css/layui.css'}" rel="stylesheet" />
+<script th:src="@{'/layui/layui.js'}" type="text/javascript"></script>
+<script th:src="@{'/js/jquery.min.js'}" type="text/javascript"></script>
+<script th:src="@{'/js/my.js'}" type="text/javascript"></script>
+</head>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		
-		<link rel="stylesheet" th:href="@{'/css/amazeui.min.css'}">
-		<link rel="stylesheet" th:href="@{'/css/admin.css'}">
-		<link rel="stylesheet" th:href="@{'/css/app.css'}">
-		<style>
-			.admin-main{
-				padding-top: 0px;
-			}
-		</style>
-	</head>
-	<body>
-		
-		<div class="am-cf admin-main">
-			<!-- content start -->
-			<div class="admin-content">
-				<div class="admin-content-body">
-					<div class="am-g">
-						<form class="am-form am-form-horizontal" action="role/addroleSubmit.action" method="post" style="padding-top: 30px;">
-							<input value="504" name="roleId" type="hidden">
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									姓名
-								</label>
-								<div class="am-u-sm-9">
-									<input id="roleName" required="" placeholder="请输入姓名" value="" name="roleName" type="text">
-									<small id="helpRole">输入姓名名称。</small>
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									用户名
-								</label>
-								<div class="am-u-sm-9">
-									<input id="roleName" required="" placeholder="请输入用户名称" value="" name="roleName" type="text">
-									<small id="helpRole">输入用户名称。</small>
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									密码
-								</label>
-								<div class="am-u-sm-9">
-									<textarea rows="" cols="50" placeholder="请输入密码" name="roleDesc"></textarea>
-									<small>输入密码。</small>
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									岗位
-								</label>
-								<div class="am-u-sm-9">
-									<textarea rows="" cols="50" placeholder="请输入岗位" name="roleDesc"></textarea>
-									<small>输入岗位。</small>
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="user-name" class="am-u-sm-3 am-form-label">
-									部门
-								</label>
-								<div class="am-u-sm-9">
-									<textarea rows="" cols="50" placeholder="请输入部门" name="roleDesc"></textarea>
-									<small>输入部门。</small>
-								</div>
-							</div>
-							<div class="am-form-group">
-								<div class="am-u-sm-9 am-u-sm-push-3">
-									<input id="addRole" class="am-btn am-btn-success" value="编辑角色" type="button">
-								</div>
-							</div>
-						</form>
-					</div>
+<body>
+<div class="layui-main">
+	<form class="layui-form" action="javascript:jg()" id="addFrm" method="post" style="margin:33px auto">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="showname" required lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
 				</div>
 			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-inline">
+					<input type="text" name="pwd" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<label class="layui-form-label">部门岗位</label>
+				<div class="layui-inline">
+					<select name="departmentid" id="department" lay-verify="required" lay-search lay-filter="province">
+						<option value="">部门</option>
+					</select>
+				</div>
+				<div class="layui-inline">
+					<select name="post" id="post" lay-verify="required" lay-search lay-filter="city">
+						<option value="">岗位</option>
+					</select>
+				</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
 		</div>
-	</body>
+	</form>
+</div>
+
+<script th:src="@{'/js/area.js'}" type="text/javascript"></script>
+<script th:src="@{'/js/select.js'}" type="text/javascript"></script>
+<script type="text/javascript">
+
+	layui.use(['form','jquery','layer'], function(){
+		var form = layui.form;
+		var $=layui.$;
+		var layer=layui.layer;
+		form.on('submit(formDemo)', function(data){
+			$.ajax({
+				url:"/add",
+				type:"get",
+				data:$("#addFrm").serialize(),
+				success:function () {
+					// layer.msg("添加成功");
+					//准备让父窗口刷新,并且关闭当前弹出的窗口
+					window.parent.location.reload();
+				}
+			});
+			return false;
+		});
+
+		//各种基于事件的操作，下面会有进一步介绍
+	});
+</script>
+
+</body>
 </html>
