@@ -15,13 +15,23 @@
   </sql>
 
   <select id="findAll" resultType="org.java.util.UserMessage">
-    SELECT a.* FROM (SELECT a.id,a.username,a.showname,a.pwd,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id) a
+    SELECT a.* FROM (SELECT a.id,a.username,a.showname,a.pwd,a.tel,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id) a
     <where>
          <if test="username!=null and username!=''">
              and username like '%${username}%'
          </if>
       </where>
       limit #{start},#{rows}
+  </select>
+
+  <select id="findAll2" resultType="org.java.util.UserMessage">
+    SELECT a.* FROM (SELECT a.id,a.username,a.showname,a.pwd,a.tel,b.postname,c.NAME FROM USER a,post b,department c WHERE a.post=b.id AND a.departmentid=c.id) a
+    <where>
+      <if test="showname!=null and showname!=''">
+        and showname like '%${showname}%'
+      </if>
+    </where>
+    limit #{start},#{rows}
   </select>
 
   <select id="findCount" resultType="int">
@@ -31,6 +41,15 @@
            and username like '%${username}%'
        </if>
      </where>
+  </select>
+
+  <select id="findCount2" resultType="int">
+    select count(*) from user
+    <where>
+      <if test="showname!=null and showname!=''">
+        and showname like '%${showname}%'
+      </if>
+    </where>
   </select>
 
   <select id="findUser" resultType="user">

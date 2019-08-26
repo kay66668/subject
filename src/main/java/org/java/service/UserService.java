@@ -18,7 +18,11 @@ public interface UserService {
 
     List<User> findAll(Integer page,Integer rows,String username);
 
+    List<User> findAll2(Integer page,Integer rows,String showname);
+
     int findCount(String username);
+
+    int findCount2(String showname);
 
     void addUser(User user);
 

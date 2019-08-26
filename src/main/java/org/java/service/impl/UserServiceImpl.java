@@ -40,11 +40,21 @@ public class UserServiceImpl implements UserService {
         return userMapper.findAll(start,rows,username);
     }
 
+    @Override
+    public List<User> findAll2(Integer page, Integer rows, String showname) {
+        int start=(page-1)*rows;
+        return userMapper.findAll2(start,rows,showname);
+    }
 
     @Override
     public int findCount(String username) {
 
         return userMapper.findCount(username);
+    }
+
+    @Override
+    public int findCount2(String showname) {
+        return userMapper.findCount2(showname);
     }
 
     @Transactional

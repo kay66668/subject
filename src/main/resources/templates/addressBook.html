@@ -6,6 +6,8 @@
     <title></title>
     <link rel="stylesheet" th:href="@{'/css/amazeui.min.css'}" type="text/css"/>
     <link rel="stylesheet" th:href="@{'/css/admin.css'}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{'/css/jquery.datatables.min.css'}" />
+    <link rel="stylesheet" th:href="@{'/css/buttons.dataTables.min.css'}" />
 </head>
 
 <body>
@@ -14,12 +16,12 @@
         <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">通讯录</strong><small></small></div>
     </div>
     <hr>
-    <form class="am-form" method="post" th:action="@{'/load'}">
+    <form class="am-form" method="post" th:action="@{'/show'}">
         <div class="am-g">
 
             <div class="am-u-sm-12 am-u-md-3">
                 <div class="am-input-group am-input-group-sm">
-                    <input type="text" name="username" class="am-form-field" placeholder="请输入用户姓名">
+                    <input type="text" name="showname" class="am-form-field" placeholder="请输入用户姓名">
                     <span class="am-input-group-btn">
             <button class="am-btn am-btn-default" type="submit">搜索</button>
           </span>
@@ -28,7 +30,7 @@
         </div>
         <div class="am-g">
             <div class="am-u-sm-12">
-                <table class="am-table am-table-striped am-table-hover table-main">
+                <table id="example"  role="grid" aria-describedby="example_info" class="am-table am-table-striped am-table-hover table-main">
                     <thead>
                     <tr>
                         <th class="table-check"><input type="checkbox" id="chkAll"></th>
@@ -40,19 +42,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="k,st:${list}">
+                    <tr th:each="t,st:${m}">
                         <td><input type="checkbox" name="chk"></td>
                         <td th:text="${st.count+(page-1)*rows}"></td>
-                        <td th:text="${k.showname}">
+                        <td th:text="${t.showname}">
                         </td>
 
-                        <td th:text="${k.NAME}">
+                        <td th:text="${t.NAME}">
                         </td>
-                        <td th:text="${k.postname}">
+                        <td th:text="${t.postname}">
                         </td>
-                        <td th:text="${k.tel}">
+                        <td th:text="${t.tel}">
                         </td>
-                        
+
                     </tr>
 
                     </tbody>
@@ -62,16 +64,16 @@
                     <div class="am-fr">
                         <ul class="am-pagination">
                             <li>
-                                <a th:href="@{|/load/1|}">«</a>
+                                <a th:href="@{|/show/1|}">«</a>
                             </li>
 
 
                             <li th:each="i:${#numbers.sequence(1,maxPage)}">
-                                <a th:href="@{|/load/${i}|}">[[${i}]]</a>
+                                <a th:href="@{|/show/${i}|}">[[${i}]]</a>
                             </li>
 
                             <li>
-                                <a th:href="@{|/load/${maxPage}|}">»</a>
+                                <a th:href="@{|/show/${maxPage}|}">»</a>
                             </li>
                         </ul>
                     </div>
@@ -84,38 +86,109 @@
 
 <script type="text/javascript" th:src="@{'/js/jquery-1.11.3.min.js'}"></script>
 <script type="text/javascript" th:src="@{'/myplugs/js/plugs.js'}"></script>
+<script th:src="@{'/change/js/jquery.min.js'}"></script>
+<script th:src="@{'/change/js/jquery.datatables.min.js'}"></script>
+<script th:src="@{'/change/js/dataTables.buttons.min.js'}"></script>
+<script th:src="@{'/change/js/jszip.min.js'}"></script>
+<script th:src="@{'/change/js/buttons.html5.min.js'}"></script>
+<script th:src="@{'/change/js/buttons.flash.min.js'}"></script>
+<script th:src="@{'/change/js/pdfmake.min.js'}"></script>
+<script th:src="@{'/change/js/vfs_fonts.js'}"></script>
+<script th:src="@{'/change/js/buttons.print.min.js'}"></script>
 <script>
-    $(function() {
-        $("#chkAll").chkAll({
-            name: "chk"
-        });
+    $(document).ready(function(){
 
-        $(".btnedit").click(function() {
+        var xx=[
+            ${m}
+        ];
+        for(i=0;i<xx.length;i++){
+            var html="<tr><td>"+xx[i].id+"</td><td>"+xx[i].showname+"</td><td>"+xx[i].department+"</td><td>"+xx[i].post+"</td><td>"+xx[i].tel+"</td></tr>";
+            $("#example tbody").append(html);
+        }
+        $('#example').DataTable( {
+            dom: 'Bfrtip',
+            language: {
+                emptyTable: '没有数据',
+                loadingRecords: '加载中...',
+                processing: '查询中...',
+                search: '检索:',
+                lengthMenu: '每页 _MENU_ 件',
+                zeroRecords: '没有数据',
+                paginate: {
+                    'first':      '第一页',
+                    'last':       '最后一页',
+                    'next':       '下一页',
+                    'previous':   '上一页'
+                },
+                info: '第 _PAGE_ 页 / 总 _PAGES_ 页',
+                infoEmpty: '没有数据',
+                infoFiltered: '(过滤总件数 _MAX_ 条)',
+            },
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: 'Data export'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'Data export'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: 'Data export'
+                },
+                {
+                    extend:'print',
+                }
+            ]
+        } );
 
-            $.jq_Panel({
-                title: "修改用户",
-                iframeWidth: 500,
-                iframeHeight: 300,
-                url: "/forward/updateUser"
-            });
-        });
-
-        $(".btnAdd").click(function() {
-
-            $.jq_Panel({
-                title: "添加用户",
-                iframeWidth: 500,
-                iframeHeight: 300,
-                url: "/forward/addUser"
-            });
-
-        });
+        $(".buttons-copy").text('复制');
+        $(".buttons-excel").text('导出到excel');
+        $(".buttons-pdf").text('导出到pdf');
+        $(".buttons-csv").text('导出到csv');
+        $(".buttons-print").text('打印');
 
     });
 
-
-
 </script>
+<!--<script>-->
+    <!--$(function() {-->
+        <!--$("#chkAll").chkAll({-->
+            <!--name: "chk"-->
+        <!--});-->
+
+        <!--$(".btnedit").click(function() {-->
+
+            <!--$.jq_Panel({-->
+                <!--title: "修改用户",-->
+                <!--iframeWidth: 500,-->
+                <!--iframeHeight: 300,-->
+                <!--url: "/forward/updateUser"-->
+            <!--});-->
+        <!--});-->
+
+        <!--$(".btnAdd").click(function() {-->
+
+            <!--$.jq_Panel({-->
+                <!--title: "添加用户",-->
+                <!--iframeWidth: 500,-->
+                <!--iframeHeight: 300,-->
+                <!--url: "/forward/addUser"-->
+            <!--});-->
+
+        <!--});-->
+
+    <!--});-->
+
+
+
+
+<!--</script>-->
+
 </body>
 
 </html>
