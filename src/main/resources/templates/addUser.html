@@ -10,7 +10,7 @@
 
 <body>
 <div class="layui-main">
-	<form class="layui-form" action="javascript:jg()" id="addFrm" method="post" style="margin:33px auto">
+	<form class="layui-form" action="javascript:jg()" id="addFrm" method="post" style="margin:35px auto">
 			<div class="layui-form-item">
 				<label class="layui-form-label">姓名</label>
 				<div class="layui-input-inline">
@@ -35,6 +35,7 @@
 				<input type="text" name="tel" required lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input">
 			</div>
 		</div>
+		<div class="layui-form-item">
 			<label class="layui-form-label">部门岗位</label>
 				<div class="layui-inline">
 					<select name="departmentid" id="department" lay-verify="required" lay-search lay-filter="province">
@@ -46,6 +47,7 @@
 						<option value="">岗位</option>
 					</select>
 				</div>
+		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
