@@ -15,15 +15,14 @@ layui.use('table', function(){
         ,cols: [[
 
             {field: 'no',type:'checkbox', width:"5%",fixed: 'left',align:"center"}
-            ,{field: 'userid', title: '编号', width:"5%", sort: true, fixed: 'left',align:"center"}
+            ,{field: 'showname', title: '真实姓名', width:"10%",align:"center"}
             ,{field: 'age', title: '年龄', width:"5%",align:"center"}
             ,{field: 'gender', title: '性别', width:"5%", sort: true,align:"center"}
-            ,{field: 'tel', title: '电话', width:"10%",align:"center"}
             ,{field: 'postbox', title: '邮箱', width: "15%",align:"center",sort:true}
             ,{field: 'address', title: '地址', width: "15%",align:"center",templet:'#resutlTemplet'}
             ,{field: 'bir', title: '出生日期', width:"12.5%", sort: true,align:"center",templet:'<div>{{ layui.util.toDateString(d.bir, "yyyy-MM-dd") }}</div>'}
             ,{field: 'ed', title: '入职日期', width:"12.5%",align:"center",templet:'<div>{{ layui.util.toDateString(d.bir, "yyyy-MM-dd") }}</div>'}
-            ,{field: 'clazz', title: '操作', width:"15%",align:"center",toolbar:"#barDemo"}
+            ,{field: 'clazz', title: '操作', width:"20%",align:"center",toolbar:"#barDemo"}
 
         ]]
     });
@@ -87,7 +86,6 @@ layui.use('table', function(){
 
                     body.find("[name='userid']").val(data.userid);
                     body.find("[name='age']").val(data.age);
-                    body.find("[name='tel']").val(data.tel);
                     body.find("[name='"+data.gender+"']").attr("checked",true);
                     body.find("[name='postbox']").val(data.postbox);
                     body.find("[name='address']").val(data.address);
@@ -129,12 +127,10 @@ layui.use('table', function(){
     }
 
     $("#search").click(function () {
-        var mytel = $("#tel").val();
         var mypostbox = $("#postbox").val();
 
         table.reload('demo',{
             where : {
-                tel: mytel,
                 postbox: mypostbox
             },
             page:{

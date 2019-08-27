@@ -1,15 +1,17 @@
-package org.java.entity;
+package org.java.util;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class Userinfo {
+public class UserinfoMessage {
     private Integer userid;
 
     private Integer age;
 
     private String gender;
+
+    private String showname;
 
     private String postbox;
 
@@ -23,10 +25,11 @@ public class Userinfo {
 
     @Override
     public String toString() {
-        return "Userinfo{" +
+        return "UserinfoMessage{" +
                 "userid=" + userid +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
+                ", showname='" + showname + '\'' +
                 ", postbox='" + postbox + '\'' +
                 ", bir=" + bir +
                 ", address='" + address + '\'' +
@@ -55,7 +58,15 @@ public class Userinfo {
     }
 
     public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+        this.gender = gender;
+    }
+
+    public String getShowname() {
+        return showname;
+    }
+
+    public void setShowname(String showname) {
+        this.showname = showname;
     }
 
     public String getPostbox() {
@@ -63,7 +74,7 @@ public class Userinfo {
     }
 
     public void setPostbox(String postbox) {
-        this.postbox = postbox == null ? null : postbox.trim();
+        this.postbox = postbox;
     }
 
     public Date getBir() {
@@ -79,7 +90,7 @@ public class Userinfo {
     }
 
     public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+        this.address = address;
     }
 
     public Date getEd() {
