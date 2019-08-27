@@ -56,16 +56,16 @@ layui.use('table', function(){
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         var tr = obj.tr; //获得当前行 tr 的DOM对象
 
-     if(layEvent === 'del'){ //删除
+        if(layEvent === 'del'){ //删除
             layer.confirm('真的删除行么', function(user){
-               $.post("/delDepartment",{"id":data.id},function () {
-                   table.reload('demo',{
-                       page:{
-                           curr:1
-                       }
-                   });
-                   layer.close(user);
-               })
+                $.post("/delDepartment",{"id":data.id},function () {
+                    table.reload('demo',{
+                        page:{
+                            curr:1
+                        }
+                    });
+                    layer.close(user);
+                })
             });
         } else if(layEvent === 'edit') { //编辑
             layer.open({
@@ -123,18 +123,18 @@ layui.use('table', function(){
     }
 
     $("#search").click(function () {
-            var myname = $("#name").val();
-            var myleader = $("#leader").val();
+        var myname = $("#name").val();
+        var myleader = $("#leader").val();
 
-            table.reload('demo',{
-                where : {
-                    name: myname,
-                    leader: myleader
-                },
-                page:{
-                    curr:1
-                }
-            });
+        table.reload('demo',{
+            where : {
+                name: myname,
+                leader: myleader
+            },
+            page:{
+                curr:1
+            }
+        });
     });
 
     $("#reset").click(function () {
