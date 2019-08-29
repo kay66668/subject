@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.TMeetMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.TMeet">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_By" jdbcType="VARCHAR" property="createBy" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="descr" jdbcType="VARCHAR" property="descr" />
+    <result column="start_Time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="meet_RoomId" jdbcType="VARCHAR" property="meetRoomid" />
+    <result column="create_Time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_By, title, descr, start_Time, meet_RoomId, create_Time, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_meet
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_meet
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.TMeet">
+    insert into t_meet (id, create_By, title, 
+      descr, start_Time, meet_RoomId, 
+      create_Time, status)
+    values (#{id,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{meetRoomid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.TMeet">
+    insert into t_meet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createBy != null">
+        create_By,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="descr != null">
+        descr,
+      </if>
+      <if test="startTime != null">
+        start_Time,
+      </if>
+      <if test="meetRoomid != null">
+        meet_RoomId,
+      </if>
+      <if test="createTime != null">
+        create_Time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meetRoomid != null">
+        #{meetRoomid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.TMeet">
+    update t_meet
+    <set>
+      <if test="createBy != null">
+        create_By = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_Time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="meetRoomid != null">
+        meet_RoomId = #{meetRoomid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_Time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.TMeet">
+    update t_meet
+    set create_By = #{createBy,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      start_Time = #{startTime,jdbcType=TIMESTAMP},
+      meet_RoomId = #{meetRoomid,jdbcType=VARCHAR},
+      create_Time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

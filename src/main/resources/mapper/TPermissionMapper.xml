@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.TPermissionMapper">
+  <resultMap id="BaseResultMap" type="org.java.entity.TPermission">
+    <id column="permissionId" jdbcType="INTEGER" property="permissionid" />
+    <result column="perName" jdbcType="VARCHAR" property="pername" />
+    <result column="parenId" jdbcType="INTEGER" property="parenid" />
+    <result column="parentName" jdbcType="VARCHAR" property="parentname" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    permissionId, perName, parenId, parentName, type, url, code, icon, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_permission
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_permission
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.TPermission">
+    insert into t_permission (permissionId, perName, parenId, 
+      parentName, type, url, 
+      code, icon, createTime
+      )
+    values (#{permissionid,jdbcType=INTEGER}, #{pername,jdbcType=VARCHAR}, #{parenid,jdbcType=INTEGER}, 
+      #{parentname,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.TPermission">
+    insert into t_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionid != null">
+        permissionId,
+      </if>
+      <if test="pername != null">
+        perName,
+      </if>
+      <if test="parenid != null">
+        parenId,
+      </if>
+      <if test="parentname != null">
+        parentName,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionid != null">
+        #{permissionid,jdbcType=INTEGER},
+      </if>
+      <if test="pername != null">
+        #{pername,jdbcType=VARCHAR},
+      </if>
+      <if test="parenid != null">
+        #{parenid,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null">
+        #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.TPermission">
+    update t_permission
+    <set>
+      <if test="pername != null">
+        perName = #{pername,jdbcType=VARCHAR},
+      </if>
+      <if test="parenid != null">
+        parenId = #{parenid,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null">
+        parentName = #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.TPermission">
+    update t_permission
+    set perName = #{pername,jdbcType=VARCHAR},
+      parenId = #{parenid,jdbcType=INTEGER},
+      parentName = #{parentname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where permissionId = #{permissionid,jdbcType=INTEGER}
+  </update>
+</mapper>

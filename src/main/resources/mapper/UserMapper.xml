@@ -8,6 +8,219 @@
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="post" jdbcType="INTEGER" property="post" />
     <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="headpath" jdbcType="VARCHAR" property="headpath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, showname, pwd, post, departmentid, tel, headpath
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.User">
+    insert into user (id, username, showname, 
+      pwd, post, departmentid, 
+      tel, headpath)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{showname,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{post,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{headpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="showname != null">
+        showname,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="departmentid != null">
+        departmentid,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="headpath != null">
+        headpath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="showname != null">
+        #{showname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="headpath != null">
+        #{headpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.User">
+    update user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="showname != null">
+        showname = #{showname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null">
+        departmentid = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="headpath != null">
+        headpath = #{headpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      showname = #{showname,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      post = #{post,jdbcType=INTEGER},
+      departmentid = #{departmentid,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      headpath = #{headpath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="org.java.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uname, pwd, tel, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.User">
+    insert into user (id, uname, pwd, 
+      tel, name)
+    values (#{id,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.User">
+    update user
+    <set>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.User">
+    update user
+    set uname = #{uname,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="org.java.entity.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="showname" jdbcType="VARCHAR" property="showname" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="post" jdbcType="INTEGER" property="post" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
     <result column="headpath" jdbcType="VARCHAR" property="headpath" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -56,7 +269,7 @@
      select * from user where username=#{username} and pwd=#{pwd}
   </select>
 
-  <select id="selectUser" resultType="user" parameterType="int">
+  <select id="selectUser" parameterType="int" resultType="user">
      select * from user where id=#{id}
   </select>
 

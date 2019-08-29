@@ -19,6 +19,21 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Override
+    public List<User> selectByUser(User user) {
+        return userMapper.selectByUser(user);
+    }
+
+    @Override
+    public User selectByPrimaryKey(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
+
+    @Override
+    public User login(Integer id) {
+        return userMapper.login(id.toString());
+    }
 
     @Autowired
     private UserMapper userMapper;

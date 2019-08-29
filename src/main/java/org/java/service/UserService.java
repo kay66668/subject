@@ -32,5 +32,11 @@ public interface UserService {
 
     void delUser(Integer id);
 
+    List<User> selectByUser(User user);
+
+    User selectByPrimaryKey(Integer id);
+
+    User login(Integer id);
+
 
 }

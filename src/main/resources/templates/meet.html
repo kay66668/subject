@@ -12,10 +12,10 @@
 <div class="notice_main">
     <h6>表格一</h6>
     <div style="border-bottom: 1px #ccc solid;padding-bottom: 8px">
-        <p style="line-height: 24px;font-size: 14px;padding: 4px 0 0 36px ;color:#bb8940;background-image: url(img/ts_03.png);background-repeat: no-repeat;background-position: 10px 8px;font-weight: bold">温馨提示</p>
+        <p style="line-height: 24px;font-size: 14px;padding: 4px 0 0 36px ;color:#bb8940;background-image: url(../img/ts_03.png);background-repeat: no-repeat;background-position: 10px 8px;font-weight: bold">温馨提示</p>
         <ul class="ts">
             <li><span>*</span>该页面主要显示的是表格一的类容。</li>
-            <li><span>*</span>该页面主要显示的是表格一的类容。</li>
+
         </ul>
     </div>
 
@@ -27,8 +27,8 @@
                 <span class="sr-only"></span>
             </button>
             <ul class="dropdown-menu">
-                <li>角色名称</li>
-                <li>角色描述</li>
+                <li>会议室名称</li>
+                <li>会议主题</li>
             </ul>
         </div>
         <div class="l_left">
@@ -75,26 +75,43 @@
                 }
                 ,
                 {
-                    title: "角色编号",
+                    title: "编号",
                     field: 'id',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '角色名称',
+                    title: '会议负责人',
+                    field: 'creatBy',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '主题',
                     field: 'title',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '创建时间',
-                    field: 'date',
+                    title: '会议描述',
+                    field: 'descr',
+                    align: 'center'
+                },
+                {
+                    title: '会议时间',
+                    field: 'startTime',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '角色描述',
-                    field: 'person',
+                    title: '创建时间',
+                    field: 'createTime',
+                    align: 'center',
+                    valign: 'middle'
+                },
+                {
+                    title: '会议状态',
+                    field: 'status',
                     align: 'center'
                 }
             ]
