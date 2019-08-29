@@ -30,10 +30,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public User login(Integer id) {
-        return userMapper.login(id.toString());
-    }
+
 
     @Autowired
     private UserMapper userMapper;
@@ -41,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUser(String username, String pwd) {
-        List<User> list=userMapper.findUser(username, pwd);
+       List<User> list=  userMapper.findUser(username, pwd);
         if(list.isEmpty()){
             return  null;
         }else {

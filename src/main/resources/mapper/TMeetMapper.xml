@@ -125,4 +125,28 @@
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getMeetList" resultMap="BaseResultMap">
+    select * from t_meet
+    <where>
+      <if test="createBy!=null and createBy !=''">
+         create_By like '%${createBy}%'
+      </if>
+      <if test="title!=null and title !=''">
+         title like '%${title}%'
+      </if>
+    </where>
+    limit #{start},#{rows}
+  </select>
+  <!--查询总数-->
+  <select id="getCount" resultType="int">
+    select count(*) from t_meet
+    <where>
+      <if test="createBy!=null and createBy !=''">
+         create_By like '%${createBy}%'
+      </if>
+      <if test="title!=null and title !=''">
+         title like '%${title}%'
+      </if>
+    </where>
+  </select>
 </mapper>

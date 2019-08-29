@@ -5,23 +5,22 @@ layui.use('table', function(){
     //第一个实例
     table.render({
         elem: '#demo'
-        ,url: '/getList'
+        ,url: '/getMeetList'
         ,page: true
         ,limit:5
         ,limits:[1,2,3,5,10,20,30,50]
-        ,toolbar:"#addDemo"
-        ,title:"学员信息汇总"
+        ,toolbar:"#addTitle"
         ,loading:true
         ,cols: [[
 
             {field: 'no',type:'checkbox', width:"5%",fixed: 'left',align:"center"}
-            ,{field: 'showname', title: '真实姓名', width:"10%",align:"center"}
-            ,{field: 'age', title: '年龄', width:"5%",align:"center"}
-            ,{field: 'gender', title: '性别', width:"5%", sort: true,align:"center"}
-            ,{field: 'postbox', title: '邮箱', width: "15%",align:"center",sort:true}
-            ,{field: 'address', title: '地址', width: "15%",align:"center",templet:'#resutlTemplet'}
-            ,{field: 'bir', title: '出生日期', width:"12.5%", sort: true,align:"center",templet:'<div>{{ layui.util.toDateString(d.bir, "yyyy-MM-dd") }}</div>'}
-            ,{field: 'ed', title: '入职日期', width:"12.5%",align:"center",templet:'<div>{{ layui.util.toDateString(d.bir, "yyyy-MM-dd") }}</div>'}
+            ,{field: 'id', title: '编号', width:"5%",align:"center"}
+            ,{field: 'createBy', title: '会议负责人', width:"10%",align:"center"}
+            ,{field: 'title', title: '会议主题', width:"10%", sort: true,align:"center"}
+            ,{field: 'descr', title: '会议描述', width: "12.5%",align:"center",sort:true}
+            ,{field: 'startTime', title: '会议时间', width: "12.5%",align:"center",templet:'<div>{{ layui.util.toDateString(d.startTime, "yyyy-MM-dd") }}</div>'}
+            ,{field: 'createTime', title: '创建时间', width:"12.5%", sort: true,align:"center",templet:'<div>{{ layui.util.toDateString(d.createTime, "yyyy-MM-dd") }}</div>'}
+            ,{field: 'status', title: '状态', width:"12.5%",align:"center"}
             ,{field: 'clazz', title: '操作', width:"20%",align:"center",toolbar:"#barDemo"}
 
         ]]
@@ -39,8 +38,8 @@ layui.use('table', function(){
                     area: ['500px', '400px'],
                     maxmin: false,
                     anim: 1,
-                    title: "添加用户",
-                    content: '/forward/user_tail',
+                    title: "添加会议",
+                    content: '/forward/addMeet',
                     zIndex: layer.zIndex, //重点1
                     success: function (layero) {
                         layer.setTop(layero); //重点2
@@ -58,16 +57,16 @@ layui.use('table', function(){
         var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
         var tr = obj.tr; //获得当前行 tr 的DOM对象
 
-    if(layEvent === 'del'){ //删除
+        if(layEvent === 'del'){ //删除
             layer.confirm('真的删除行么', function(index){
-               $.post("/delUserinfo",{"userid":data.userid},function () {
-                   table.reload('demo',{
-                       page:{
-                           curr:1
-                       }
-                   });
-                   layer.close(index);
-               })
+                $.post("/delMeet",{"id":data.id},function () {
+                    table.reload('demo',{
+                        page:{
+                            curr:1
+                        }
+                    });
+                    layer.close(index);
+                })
             });
         } else if(layEvent === 'edit') { //编辑
             layer.open({
@@ -127,11 +126,13 @@ layui.use('table', function(){
     }
 
     $("#search").click(function () {
-        var mypostbox = $("#postbox").val();
+        var mycreateBy = $("#createBy").val();
+        var mytitle=$("#title").val();
 
         table.reload('demo',{
             where : {
-                postbox: mypostbox
+                createBy: mycreateBy,
+                title: mytitle
             },
             page:{
                 curr:1

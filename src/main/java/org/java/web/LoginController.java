@@ -30,6 +30,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String findUser(String username, String pwd, HttpServletRequest request){
+
         User map=userService.findUser(username,pwd);
         if(map==null){
             HttpSession ses=request.getSession();
@@ -37,6 +38,7 @@ public class LoginController {
             return "/login";
         }else {
             request.setAttribute("user",map);
+
             return  "/index";
         }
     }

@@ -1,10 +1,11 @@
-package org.java.entity;
+package org.java.util;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class TMeet {
+public class MeetMessage {
+
     private Integer id;
 
     private String createBy;
@@ -16,7 +17,7 @@ public class TMeet {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
 
-    private String meetRoomid;
+    private String meetRoomId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
@@ -36,7 +37,7 @@ public class TMeet {
     }
 
     public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy.trim();
+        this.createBy = createBy;
     }
 
     public String getTitle() {
@@ -44,7 +45,7 @@ public class TMeet {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getDescr() {
@@ -52,7 +53,7 @@ public class TMeet {
     }
 
     public void setDescr(String descr) {
-        this.descr = descr == null ? null : descr.trim();
+        this.descr = descr;
     }
 
     public Date getStartTime() {
@@ -63,12 +64,12 @@ public class TMeet {
         this.startTime = startTime;
     }
 
-    public String getMeetRoomid() {
-        return meetRoomid;
+    public String getMeetRoomId() {
+        return meetRoomId;
     }
 
-    public void setMeetRoomid(String meetRoomid) {
-        this.meetRoomid = meetRoomid == null ? null : meetRoomid.trim();
+    public void setMeetRoomId(String meetRoomId) {
+        this.meetRoomId = meetRoomId;
     }
 
     public Date getCreateTime() {
@@ -84,6 +85,20 @@ public class TMeet {
     }
 
     public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "MeetMessage{" +
+                "id=" + id +
+                ", createBy='" + createBy + '\'' +
+                ", title='" + title + '\'' +
+                ", descr='" + descr + '\'' +
+                ", startTime=" + startTime +
+                ", meetRoomId='" + meetRoomId + '\'' +
+                ", createTime=" + createTime +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

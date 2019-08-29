@@ -36,7 +36,7 @@ public interface UserService {
 
     User selectByPrimaryKey(Integer id);
 
-    User login(Integer id);
+
 
 
 }

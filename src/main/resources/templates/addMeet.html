@@ -1,44 +1,95 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link th:href="@{'/css/tree.css'}" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>layui.form小例子</title>
+    <link rel="stylesheet" th:href="@{'/layui/css/layui.css'}" media="all">
+    <script th:src="@{'/layui/layui.js'}"></script>
+    <script th:src="@{'/meet.js'}"></script>
 </head>
 <body>
-<form>
-<div class="div_form">
-    <div>
-    <label class="form_label">角色编号<span>*</span></label>
-    <input type="text" class="form_input" placeholder="请输入编号"  required>
+<form class="layui-form" id="addFrm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <div class="layui-form-item">
+        <label class="layui-form-label">会议负责人</label>
+        <div class="layui-input-inline">
+            <input type="text" name="createBy" placeholder="请输入会议负责人"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
     </div>
-    <div>
-    <label class="form_label">角色名称<span>*</span></label>
-    <input type="text" class="form_input" placeholder="请输入名称" required>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会议主题</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" placeholder="请输入会议主题"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
     </div>
-    <div>
-    <label class="form_label">创建时间<span>*</span></label>
-    <input type="text" class="form_input" id="demo" placeholder="请输入时间"  required>
-    </div>
-    <div>
-    <label class="form_label l_left" style="vertical-align: middle">角色描述 </label>
-    <textarea class="form_textarea"></textarea>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会议描述</label>
+        <div class="layui-input-inline">
+            <input type="text" name="descr" placeholder="请输入描述" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
     </div>
 
-</div>
-<div style="clear: both"></div>
-<div class="notice_bot">
-    <div class="l_left"><input type="checkbox" checked="checked"/>保存并关闭窗口</div>
-    <div class="r_right but_p"><button class="but_save">保存</button><button class="but_close" onclick="Cancel()">关闭</button></div>
-</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会议时间</label>
+        <div class="layui-input-inline">
+            <input type="date" name="startTime"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">会议室编号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="meetRoomid" placeholder="请输入会议主题"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建时间</label>
+        <div class="layui-input-inline">
+            <input type="date" name="createTime"  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                <select name="status">
+                    <option value="">所有</option>
+                    <option value="0">空闲</option>
+                    <option value="1">预约中</option>
+                    <option value="2">使用中</option>
+                    <option  value="3">停用</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+    <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
 </form>
-
-</body>
-<script th:src="@{'/js/jquery/jQuery-2.2.0.min.js'}"></script>
+<script th:src="@{'/layui.js'}"></script>
 <script>
-    function Cancel() {
-        var index = parent.layer.getFrameIndex(window.name);
-        parent.layer.close(index);
-    }
+    layui.use(['form','jquery','layer'],function () {
+        var form = layui.form;
+        var $ = layui.$;
+        var layer = layui.layer;
+
+        form.on('submit(formDemo)',function (data) {
+            $.ajax({
+                url:"/addMeet",
+                type:"get",
+                data:$("#addFrm").serialize(),
+                success:function () {
+                    window.parent.location.reload();
+
+                }
+            });
+            return false;
+        });
+    });
 </script>
+</body>
 </html>

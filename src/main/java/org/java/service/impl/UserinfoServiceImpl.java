@@ -3,6 +3,7 @@ package org.java.service.impl;
 import org.java.dao.UserinfoMapper;
 import org.java.entity.Userinfo;
 import org.java.service.UserinfoService;
+import org.java.util.UserinfoMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class UserinfoServiceImpl implements UserinfoService {
     }
 
     @Override
-    public List<Userinfo> getList(int page,int rows,String tel,String postbox){
+    public List<UserinfoMessage> getList(int page, int rows, String tel, String postbox){
 
         int start = (page-1)*rows;
 
