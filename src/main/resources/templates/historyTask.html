@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table,tr,td,th{
+		border: 1px black solid;
+		border-collapse: collapse;
+	}
+	a{
+		text-decoration: none;
+		color: blue;
+	}
+	a:hover{
+		color: red;
+	}
+</style>
+</head>
+<body  style="margin: 0px" >
+		<table   width="100%"  align="center" border="1">
+			<tr>
+				<Th>编号</Th>
+				<Th>任务ID</Th>
+				<Th>所属流程实例ID</Th>
+				<Th>任务名称</Th>
+				<TH>办理人</TH>
+				<Th>开始时间</Th>
+				<Th>结束时间</Th>
+			</tr>
+
+				<Tr th:each="k:${list}" align="center">
+					<TD th:text="${k.id}"></TD>
+					<TD th:text="${k.id}"></TD>
+					<TD th:text="${k.processInstanceId}"></TD>
+					<TD th:text="${k.name}"></TD>
+					<TD th:text="${k.assignee}"></TD>
+					<TD th:text="${#dates.format(k.startTime,'yyyy-MM-dd HH:mm:ss')}">
+
+					</TD>
+					<TD th:text="${#dates.format(k.endTime,'yyyy-MM-dd HH:mm:ss')}">
+
+					</TD>
+				</Tr>
+
+		</table>
+</body>
+</html>

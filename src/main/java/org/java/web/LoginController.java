@@ -38,7 +38,8 @@ public class LoginController {
             return "/login";
         }else {
             request.setAttribute("user",map);
-
+            HttpSession session=request.getSession();
+            session.setAttribute("username",username);
             return  "/index";
         }
     }

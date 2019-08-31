@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.OrderMapper">
+	<insert id="createOrder" parameterType="map">
+		insert into pur_order
+		values(#{id},#{name},#{content},#{createTime},#{status},#{userId},#{processInstanceId},#{endtime})
+	</insert>
+	
+	<select id="findOrder" resultType="map">
+		select * from pur_order where processInstance_id = #{processInstanceId}
+	</select>
+	
+	<select id="findOrderById" resultType="map">
+		select * from pur_order where id=#{id}
+	</select>
+	
+	<insert id="submitAudit" parameterType="map">
+	insert into pur_order_audit values(#{id},#{userId},#{orderId},#{info},#{defKey},#{status},#{createtime})
+	</insert>
+</mapper>
